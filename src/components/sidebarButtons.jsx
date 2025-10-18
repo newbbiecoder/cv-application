@@ -2,6 +2,7 @@ import { useState } from "react";
 import PersonalDataInput from "./personalData";
 import ExperienceInput from "./experience";
 import Education from "./education";
+import Skills from "./skills";
 
 export default function SideBarButtons() {
     const [activeSection, setActiveSection] = useState('');
@@ -30,6 +31,10 @@ export default function SideBarButtons() {
         else if(activeSection === "Education") {
             document.querySelector('.edit-container > .personalData')?.remove();
             return <Education />
+        }
+        else if(activeSection === "Skills") {
+            document.querySelector('.edit-container > .personalData')?.remove();
+            return <Skills />
         }
     }
     return (
