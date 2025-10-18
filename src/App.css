@@ -50,8 +50,25 @@
     }
 }
 
-.skill-info {
+.skill-info, .lang-info, .interest-info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.certificate-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.certificate-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        display: flex;
+        flex-direction: column;
+    }
 }
