@@ -18,7 +18,6 @@ export default function SideBarButtons() {
     }
 
     function renderActiveSection() {
-        // if(!document.querySelector('.edit-container').contains(document.querySelector('.personalData'))) return <PersonalDataInput />
         if(activeSection === "Personal data" ) {
             document.querySelector('.edit-container > .personalData')?.remove();
             return <PersonalDataInput />

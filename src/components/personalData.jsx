@@ -9,6 +9,13 @@ export default function PersonalDataInput() {
         {name: "Residence (city)", id: crypto.randomUUID()},
     ]
 
+    function getInputField(field) {
+        if(field === "Email*") return "email";
+        else if(field === "Link to your website") return "url";
+        else if(field === "Telephone number*") return "tel"
+        else return "text"
+    }
+
     return (
         <div className="personalData">
             <h3>Personal Data</h3>
@@ -26,11 +33,11 @@ export default function PersonalDataInput() {
                 {formFields.map((field) => (
                     <label key={field.id}>
                         {field.name} {' '} 
-                        <input type="text" name={field.name} id={field.name} />
+                        <input type={getInputField(field.name)} name={field.name} id={field.name} />
                     </label>
                 ))}
             </div>
-            <button>
+            <button className="btn-workexp">
                 Continue to work experience
                 {/* <img src="" alt="" /> */}
             </button>
