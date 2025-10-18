@@ -45,22 +45,22 @@ function JobInfo() {
             </button>
             <div className="form-fields">
                 {formFields.map(field => (
-                    <label key={field.id}>
+                    <label htmlFor={field.name} key={field.id}>
                         {field.name} {' '}
                         <input type="text" name={field.name} id={field.name} />
                     </label>
                 ))}
-                <label key={crypto.randomUUID()}>
+                <label htmlFor="pos-desc" key={crypto.randomUUID()}>
                     Position description 
                     <textarea name="pos-desc" id="pos-desc"></textarea>
                 </label>
 
                 <div className="company-arrival">
-                    <label key={crypto.randomUUID()}>
+                    <label htmlFor="month-arr" key={crypto.randomUUID()}>
                         Month of Arrival
                         <input type="text" name="month-arr" id="month-arr"/>
                     </label>
-                    <label key={crypto.randomUUID()}>
+                    <label htmlFor="year-arr" key={crypto.randomUUID()}>
                         Year of entry
                         <input type="number" name="year-arr" id="year-arr" />
                     </label>
@@ -71,17 +71,17 @@ function JobInfo() {
                 </div>
 
                 <div className="company-left">
-                    <label key={crypto.randomUUID()}>
+                    <label htmlFor="month-end" key={crypto.randomUUID()}>
                         End Month
                         <input type="text" name="month-end" id="month-end" />
                     </label>
-                    <label key={crypto.randomUUID()}>
+                    <label htmlFor="year-end" key={crypto.randomUUID()}>
                         Year of termination
                         <input type="number" name="year-end" id="year-end" />
                     </label>
                 </div>
 
-                <label key={crypto.randomUUID()}>
+                <label htmlFor="reason-term" key={crypto.randomUUID()}>
                     Reason for termination
                     <textarea name="reason-term" id="reason-term"></textarea>
                 </label>

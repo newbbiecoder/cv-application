@@ -31,7 +31,7 @@ export default function PersonalDataInput() {
 
             <div className="form personalDataForm">
                 {formFields.map((field) => (
-                    <label key={field.id}>
+                    <label htmlFor={field.name} key={field.id}>
                         {field.name} {' '} 
                         <input type={getInputField(field.name)} name={field.name} id={field.name} />
                     </label>
