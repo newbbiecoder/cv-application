@@ -1,7 +1,18 @@
+@font-face {
+    font-family: Gravitica;
+    src: url(assets/fonts/ckhans-fonts-gravitica-light-demo/ckhans-fonts-gravitica-light-demo.otf);
+}
+
 #root {
     display: flex;
     min-height: 100vh;
     width: 100%;
+    font-family: Gravitica;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 .edit-container {
@@ -17,10 +28,49 @@
     background-color: #ebf4ff;
 }
 
+.sideBarButtons {
+    p {
+        text-align: center;
+    }
+}
 
-.sideBarButtons > ul > li{
+.sideBarButtons > ul{
+    padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    list-style-type: none;
+
+    li {  
+        border-radius: 25px;
+        background-color: white;
+        padding: 0.4rem;
+        cursor: pointer;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            font-size: 1rem;
+            font-family: Gravitica;
+            font-weight: bold;
+            background-color: inherit;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            gap: 0.5rem;
+
+            img {
+                margin-top: 12px;
+                height: 25px;
+                width: 25px;
+            }
+        }
+    } 
+    li:hover {
+        border: 2px solid blue;
+    }
 }
 
 .form, .form-fields {
@@ -71,4 +121,116 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.personalData {
+    h3 {
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+    p {
+        margin: 0;
+    }
+
+    .addPhoto {
+        display: flex;
+        margin-top: 1rem;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        svg:first-child {
+            border: 2px solid blue;
+            border-radius: 35px;
+            padding: 0.8rem;
+            height: 40px;
+            width: 40px;
+            background-color: blue;
+            fill: white;
+        }
+
+        div {
+            color: blue;
+            display: flex;
+
+            p {
+                font-family: Roboto;
+                margin-top: 2px;
+                text-decoration: underline;
+            }
+
+            svg {
+                fill: blue;
+                height: 25px;
+                width: 25px;
+            }    
+        }
+    }
+}
+
+.form {
+    /* font-family: rR; */
+    label{
+        span {
+            font-family: Roboto;
+        }
+        input, textarea {
+            resize: none;
+            width: 320px;
+            font-family: Gravitica;
+            border: none;
+            border-bottom: 2px solid grey;
+            padding: 1.2rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: 
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                border-bottom 0.25s ease;
+        }
+
+        input:focus, textarea:focus {
+            font-family: Gravitica;
+            color: #001c35;
+            background-color: #fff;
+            border-color: #006eec;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-bottom: 2px solid blue;
+        }
+    }
+}
+
+.btn-workexp {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: Roboto;
+    margin-top: 1rem;
+    border: none;
+    background-color: #006EEC;
+    color: white;
+    padding: 0.8rem;
+    padding-right: 1.7rem;
+    padding-left: 1.7rem;
+    margin-bottom: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+
+    p {
+        margin-top: 4px;
+    }
+
+    display: flex;
+    gap: 5px;
+    svg {
+        height: 35px;
+        width: 35px;
+        fill: white;
+    }
+
+    transition: background-color 0.25s ease;
+}
+
+.btn-workexp:hover {
+    background-color: #0058BA;
 }
