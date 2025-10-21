@@ -10,6 +10,12 @@
     font-family: Gravitica;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -168,8 +174,7 @@ body {
     }
 }
 
-.form {
-    /* font-family: rR; */
+.form, .form-fields {
     label{
         span {
             font-family: Roboto;
@@ -198,6 +203,12 @@ body {
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
             border-bottom: 2px solid blue;
         }
+    }
+}
+
+.form-fields > label{
+    input, textarea{
+        width: auto;
     }
 }
 
@@ -233,4 +244,167 @@ body {
 
 .btn-workexp:hover {
     background-color: #0058BA;
+}
+
+.experience {
+    h3 {
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+    p {
+        margin: 0;
+    }
+    p:nth-child(5) {
+        margin-bottom: 1rem;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+
+        .add-position {
+            padding-left: 0;
+            display: flex;
+            background-color: transparent;
+            width: fit-content;
+            border: none;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            cursor: pointer;
+
+            p {
+                color: #006EEC;
+                font-weight: 500;
+                margin-top: 4px;
+                font-size: 1rem;
+                text-decoration: underline;
+                font-family: Roboto;
+            }
+
+            svg {
+                height: 28px;
+                width: 28px;
+                fill: #006EEC;
+                transition: transform 0.3s ease-in-out;
+                transform: rotate(0deg);
+            }
+        }
+        .add-position:hover {
+            p {
+                color: #0058BA;
+                text-decoration: none;
+            }
+
+            svg {
+                transform: rotate(180deg);
+            }   
+        }
+    }
+}
+
+.job-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #006eec14;
+    button:first-child {
+        margin-bottom: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid blue;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+        cursor: pointer;
+        
+        background-color: white;
+        
+
+        p{
+            font-size: 1rem;
+            font-family: Gravitica;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.job-info.hide {
+    background-color: transparent;
+    button {
+        border: none;
+        border-bottom: 2px solid black;
+        transition: border-bottom 0.25s ease;
+    }
+    button:hover {
+        border-bottom: 2px solid blue;
+    }
+}
+
+.form-fields {
+    width: 90%;
+    
+    label > p > span {
+        font-family: Roboto;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    label[for="reason-term"] {
+        margin-bottom: 1rem;
+    }
+
+    .remove-position {
+        padding-left: 0;
+        display: flex;
+        background-color: transparent;
+        width: fit-content;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+
+        p {
+            color: red;
+            font-weight: 500;
+            margin-top: 4px;
+            font-size: 1rem;
+            text-decoration: underline;
+            font-family: Roboto;
+        }
+
+        svg {
+            height: 28px;
+            width: 28px;
+            fill: red;
+            transition: transform 0.3s ease-in-out;
+            transform: rotate(0deg);
+        }
+    }
+    .remove-position:hover {
+        p {
+            color:rgb(246, 66, 66);
+            text-decoration: none;
+        }
+
+        svg {
+            transform: rotate(180deg);
+        }   
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.company-arrival, .company-left {
+    label > input {
+        width: 50%;
+    }
 }
