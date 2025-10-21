@@ -212,7 +212,7 @@ body {
     }
 }
 
-.btn-workexp {
+.btn-workexp, .btn-education {
     font-size: 1.2rem;
     font-weight: 500;
     font-family: Roboto;
@@ -242,8 +242,18 @@ body {
     transition: background-color 0.25s ease;
 }
 
-.btn-workexp:hover {
+.btn-workexp:hover, .btn-education:hover {
     background-color: #0058BA;
+}
+
+.btn-education {
+    width: 80%;
+    p {
+        padding-top: 0;
+        margin: 0;
+        margin-top: 7px;
+    }
+    padding-right: 0;
 }
 
 .experience {
@@ -251,9 +261,14 @@ body {
         font-size: 2rem;
         font-weight: bolder;
     }
-    p {
+
+    p:nth-child(2),
+    p:nth-child(3),
+    p:nth-child(4),
+    p:nth-child(5) {
         margin: 0;
     }
+
     p:nth-child(5) {
         margin-bottom: 1rem;
     }
