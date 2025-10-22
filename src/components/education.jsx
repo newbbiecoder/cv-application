@@ -12,13 +12,15 @@ export default function Education() {
             <h3>Education</h3>
             <p>Your education data can help recruiters determine</p>
             <p>if you're a good fit for the position.</p>
+            
+            <div className="educations">
+                {forms}
+            </div>
 
             <button className="add-education" onClick={addForm}>
-                Add Education
-                {/* <img src="" alt="" /> */}
+                <p>Add Education</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
-
-            {forms}
 
             <button className="btn-skills">
                 Continue to skills 
@@ -29,15 +31,54 @@ export default function Education() {
 }
 
 function EducationInfo() {
+    const [fieldsHide, setFieldsHide] = useState(false);
+
+    const addFields = (e) => {
+        setFieldsHide(!fieldsHide);
+        console.log(e.target);
+        !fieldsHide ? (
+            (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.add('hide')
+            : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.add('hide')
+            : e.target.parentNode.classList.add('hide')
+            ) : (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.remove('hide')
+            : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.remove('hide')
+            : e.target.parentNode.classList.remove('hide');
+    }
+
+    const removeForm = (e) => {
+        e.target.parentElement.parentElement.parentElement.remove();
+    }
+
+    const addTick = (e) => {
+        if(!e.target.classList.contains('tick')) {
+            e.target.classList.add('tick')
+            e.target.textContent = '✓';
+            e.target.parentNode.nextElementSibling.classList.add('studying-hidden');
+        }else {
+            e.target.classList.remove('tick');
+            e.target.textContent = '';
+            e.target.parentNode.nextElementSibling.classList.remove('studying-hidden');
+        }   
+    }
+
+
     return (
         <div className="education-info">
-            <button>
-                New education
-                {/* <img src="" alt="" /> */}
+            <button onClick={addFields}>
+                <p>New education</p>
+
+                {fieldsHide ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                ): (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                )}
             </button>
-            <div className="form-fields">
+            <div className={fieldsHide ? "form-fields hidden" : "form-fields"}>
                 <label htmlFor="school-name" id="school-name">
-                    Name of institution*
+                    <p>
+                        Name of institution
+                        <span>*</span>
+                    </p>
                     <input type="text" name="school-name" id="school-name" />
                 </label>
                 <label htmlFor="field-study" id="field-study">
@@ -72,18 +113,29 @@ function EducationInfo() {
                 </div>
 
                 <label htmlFor="school-start" id="school-start">
-                    Year of start of study*
+                    <p>
+                        Year of start of study
+                        <span>*</span>
+                    </p>
                     <input type="number" name="school-start" id="school-start" />
                 </label>
 
                 <div className="still-studying">
-                    <span></span> <p>I'm still studying here</p>
+                    <span onClick={addTick}></span> <p>I'm still studying here</p>
                 </div>
 
                 <label htmlFor="school-end">
-                    Year of Graduation*
+                    <p>
+                        Year of Graduation
+                        <span>*</span>
+                    </p>
                     <input type="number" name="school-end" id="school-end" />
                 </label>
+
+                <button className="remove-education" onClick={removeForm}>
+                    <p>Remove this education</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                </button>
             </div>
         </div>
     )
