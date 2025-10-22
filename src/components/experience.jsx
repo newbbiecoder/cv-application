@@ -17,7 +17,10 @@ export default function ExperienceInput() {
             <p>description as briefly as possible. Ideally in points.</p>
 
             <div className="btn-container">
-                {forms}
+                <div className="jobs">
+                    {forms}
+                </div>
+                
 
                 <button className="add-position" onClick={addForm}>
                     <p>Add a position</p>
