@@ -346,24 +346,40 @@ body {
         svg {
             width: 30px;
             height: 30px;
+            transition: transform 0.3s ease-in-out;
+            transform: rotate(0deg);
         }
     }
 }
 
 .job-info.hide {
     background-color: transparent;
-    button {
+    button:first-child {
         border: none;
         border-bottom: 2px solid black;
         transition: border-bottom 0.25s ease;
+
+        svg {
+            transform: rotate(-90deg);
+        }
     }
-    button:hover {
+    button:first-child::hover {
         border-bottom: 2px solid blue;
     }
 }
 
 .form-fields {
     width: 90%;
+    border-bottom: 2px solid blue;
+
+    overflow: hidden;
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: 
+        max-height 0.4s ease-in-out,
+        opacity 0.4s ease-in-out,
+        transform 0.4s ease-in-out;
     
     label > p > span {
         font-family: Roboto;
@@ -414,12 +430,48 @@ body {
     }
 }
 
-.hidden {
-    display: none;
+.form-fields.hidden {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+
 }
 
 .company-arrival, .company-left {
     label > input {
         width: 50%;
     }
+}
+
+.still-working {
+    display: flex;
+    gap: 0.5rem;
+    span {
+        width: 20px;
+        height: 18px;
+        border: 2px solid #333;
+        border-radius: 3px;
+        display: inline-block;
+        background-color: white;
+        cursor: default;
+        user-select: none;
+    }
+    p {
+        margin-top: 2px;
+    }
+    
+
+    span.tick{
+        background-color: #006eec;
+        color: white;
+        text-align: center;
+        padding-bottom: 3px;
+        box-shadow: 0 0 0 0.35rem rgba(0, 153, 255, 0.35);
+        border-radius: 6px;
+        margin-left: 4px;
+    }
+}
+
+label[for="reason-term"].working-hidden, .company-left.working-hidden {
+    display: none;
 }

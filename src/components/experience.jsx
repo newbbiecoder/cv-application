@@ -49,11 +49,27 @@ function JobInfo() {
             (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.add('hide')
             : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.add('hide')
             : e.target.parentNode.classList.add('hide')
-        ) : e.target.parentNode.classList.remove('hide');
+            ) : (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.remove('hide')
+            : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.remove('hide')
+            : e.target.parentNode.classList.remove('hide');
     }
 
     const removeForm = (e) => {
         e.target.parentElement.parentElement.parentElement.remove();
+    }
+
+    const addTick = (e) => {
+        if(!e.target.classList.contains('tick')) {
+            e.target.classList.add('tick')
+            e.target.textContent = '✓';
+            e.target.parentNode.nextElementSibling.classList.add('working-hidden');
+            e.target.parentNode.nextElementSibling.nextElementSibling.classList.add('working-hidden');
+        }else {
+            e.target.classList.remove('tick');
+            e.target.textContent = '';
+            e.target.parentNode.nextElementSibling.classList.remove('working-hidden');
+            e.target.parentNode.nextElementSibling.nextElementSibling.classList.remove('working-hidden');
+        }   
     }
 
     return (
@@ -94,7 +110,7 @@ function JobInfo() {
                 </div>
 
                 <div className="still-working">
-                    <span></span> <p>I'm still working here</p>
+                    <span onClick={addTick}></span> <p>I'm still working here</p>
                 </div>
 
                 <div className="company-left">
