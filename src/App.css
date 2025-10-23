@@ -35,6 +35,7 @@ body {
 }
 
 .sideBarButtons {
+    position: sticky;
     p {
         text-align: center;
     }
@@ -131,6 +132,7 @@ body {
     label {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
     }
 }
 
@@ -179,7 +181,7 @@ body {
     }
 }
 
-.form, .form-fields, .skill-field {
+.form, .form-fields, .skill-field, .other-fields, .certificate-fields {
     label{
         span {
             font-family: Roboto;
@@ -212,13 +214,13 @@ body {
     }
 }
 
-.form-fields > label{
+.form-fields > label, .certificate-fields > label{
     input, textarea{
         width: auto;
     }
 }
 
-.btn-workexp, .btn-education, .btn-skills, .btn-others {
+.btn-workexp, .btn-education, .btn-skills, .btn-others, .finish {
     font-size: 1.2rem;
     font-weight: 500;
     font-family: Roboto;
@@ -251,7 +253,7 @@ body {
     transition: background-color 0.25s ease;
 }
 
-.btn-workexp:hover, .btn-education:hover, .btn-skills:hover, .btn-others:hover {
+.btn-workexp:hover, .btn-education:hover, .btn-skills:hover, .btn-others:hover, .finish:hover {
     background-color: #0058BA;
 }
 
@@ -378,8 +380,7 @@ body {
     gap: 1rem;
 }
 
-.form-fields {
-    /* width: 90%; */
+.form-fields, .certificate-fields {
     border-bottom: 2px solid blue;
     display: flex;
     justify-content: center;
@@ -408,7 +409,7 @@ body {
         margin-bottom: 1rem;
     }
 
-    .remove-position, .remove-education {
+    .remove-position, .remove-education, .remove-certificate {
         padding-left: 0;
         display: flex;
         background-color: transparent;
@@ -435,7 +436,7 @@ body {
             transform: rotate(0deg);
         }
     }
-    .remove-position:hover, .remove-education:hover {
+    .remove-position:hover, .remove-education:hover, .remove-certificate:hover {
         p {
             color:rgb(246, 66, 66);
             text-decoration: none;
@@ -447,7 +448,7 @@ body {
     }
 }
 
-.form-fields.hidden {
+.form-fields.hidden, .certificate-fields.hidden {
     max-height: 0;
     opacity: 0;
     transform: translateY(-20px);
@@ -548,7 +549,7 @@ label[for="school-end"].studying-hidden {
     }
 }
 
-.education-info {
+.education-info, .others-info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -584,8 +585,9 @@ label[for="school-end"].studying-hidden {
     }
 }
 
-.education-info.hide {
+.education-info.hide, .others-info.hide {
     background-color: transparent;
+    border-bottom: none;
     button:first-child {
         border: none;
         border-bottom: 2px solid black;
@@ -610,6 +612,23 @@ label[for="school-end"].studying-hidden {
     width: 100%;
     
     label[for="school-end"] {
+        margin-bottom: 1rem;
+    }
+}
+
+.others-info {
+    border-bottom: 2px solid blue;
+    margin-bottom: 1rem;
+}
+
+.certificate-fields {
+    border-bottom: none;
+    width: 80%;
+    text-align: center;
+    input {
+        text-align: center;
+    }
+    label[for="URL"] {
         margin-bottom: 1rem;
     }
 }
@@ -662,9 +681,10 @@ label[for="school-end"].studying-hidden {
     }
 }
 
-.skill-field {
+.skill-field, .other-fields {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 
     label {
@@ -674,6 +694,7 @@ label[for="school-end"].studying-hidden {
 
         input {
             font-size: 1rem;
+            text-align: center;
         }
     }
 
@@ -687,5 +708,62 @@ label[for="school-end"].studying-hidden {
     }
     svg:hover {
         transform: rotate(180deg);
+    }
+}
+
+.other-fields, .skill-field {
+    label {
+        input {
+            width: 250px;
+        }
+    }
+}
+
+
+.others {
+    h3 {
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+    p {
+        margin: 0;
+    }
+
+    .add-language, .add-interests, .add-certificates {
+        padding-left: 0;
+        display: flex;
+        background-color: transparent;
+        width: fit-content;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+
+        p {
+            color: #006EEC;
+            font-weight: 500;
+            margin-top: 4px;
+            font-size: 1rem;
+            text-decoration: underline;
+            font-family: Roboto;
+        }
+
+        svg {
+            height: 28px;
+            width: 28px;
+            fill: #006EEC;
+            transition: transform 0.3s ease-in-out;
+            transform: rotate(0deg);
+        }
+    }
+    .add-language:hover, .add-interests:hover, .add-certificates:hover {
+        p {
+            color: #0058BA;
+            text-decoration: none;
+        }
+
+        svg {
+            transform: rotate(180deg);
+        }   
     }
 }
