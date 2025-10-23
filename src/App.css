@@ -179,7 +179,7 @@ body {
     }
 }
 
-.form, .form-fields {
+.form, .form-fields, .skill-field {
     label{
         span {
             font-family: Roboto;
@@ -187,6 +187,7 @@ body {
         input, textarea {
             resize: none;
             width: 320px;
+            font-size: 1rem;
             font-family: Gravitica;
             border: none;
             border-bottom: 2px solid grey;
@@ -217,7 +218,7 @@ body {
     }
 }
 
-.btn-workexp, .btn-education, .btn-skills {
+.btn-workexp, .btn-education, .btn-skills, .btn-others {
     font-size: 1.2rem;
     font-weight: 500;
     font-family: Roboto;
@@ -231,13 +232,16 @@ body {
     margin-bottom: 1rem;
     border-radius: 25px;
     cursor: pointer;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 
     p {
         margin-top: 4px;
+        margin: 0;
     }
 
-    display: flex;
-    gap: 5px;
     svg {
         height: 35px;
         width: 35px;
@@ -247,18 +251,13 @@ body {
     transition: background-color 0.25s ease;
 }
 
-.btn-workexp:hover, .btn-education:hover, .btn-skills:hover {
+.btn-workexp:hover, .btn-education:hover, .btn-skills:hover, .btn-others:hover {
     background-color: #0058BA;
 }
 
 .btn-education {
     width: 80%;
-    p {
-        padding-top: 0;
-        margin: 0;
-        margin-top: 7px;
-    }
-    padding-right: 0;
+    padding-right: 10px;
 }
 
 .experience {
@@ -612,5 +611,81 @@ label[for="school-end"].studying-hidden {
     
     label[for="school-end"] {
         margin-bottom: 1rem;
+    }
+}
+
+.skills {
+    h3 {
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+    p {
+        margin: 0;
+    }
+
+    .add-skill {
+        padding-left: 0;
+        display: flex;
+        background-color: transparent;
+        width: fit-content;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+
+        p {
+            color: #006EEC;
+            font-weight: 500;
+            margin-top: 4px;
+            font-size: 1rem;
+            text-decoration: underline;
+            font-family: Roboto;
+        }
+
+        svg {
+            height: 28px;
+            width: 28px;
+            fill: #006EEC;
+            transition: transform 0.3s ease-in-out;
+            transform: rotate(0deg);
+        }
+    }
+    .add-skill:hover {
+        p {
+            color: #0058BA;
+            text-decoration: none;
+        }
+
+        svg {
+            transform: rotate(180deg);
+        }   
+    }
+}
+
+.skill-field {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        input {
+            font-size: 1rem;
+        }
+    }
+
+    svg {
+        height: 35px;
+        width: 35px;
+        fill: red;
+        transition: transform 0.3s ease-in-out;
+        transform: rotate(0deg);
+        cursor: pointer;
+    }
+    svg:hover {
+        transform: rotate(180deg);
     }
 }
