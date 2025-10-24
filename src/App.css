@@ -8,6 +8,7 @@
     min-height: 100vh;
     width: 100%;
     font-family: Gravitica;
+    --height: min(90vh, 297mm);
 }
 
 input::-webkit-outer-spin-button,
@@ -766,4 +767,33 @@ label[for="school-end"].studying-hidden {
             transform: rotate(180deg);
         }   
     }
+}
+
+.preview-container {
+    display: flex;
+    justify-content: center;
+}
+
+.resume {
+    display: flex;
+    position: sticky;
+    top: 2rem;
+    height: var(--height);
+    width: calc(var(--height) * (210/297));
+    container-type: inline-size;
+}
+
+.left-side {
+    flex: 1;
+    background-color: #0070ed;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-side {
+    flex: 2;
+    background-color: white;
+    padding-left: 2rem;
 }
