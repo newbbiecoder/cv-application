@@ -26,9 +26,23 @@ export default function SideBarButtons(props) {
             website={props.website} setWebsite={props.setWebsite}
             aboutMe={props.aboutMe} setAboutMe={props.setAboutMe}
         />;
-        else if(activeSection === "Experience") return <ExperienceInput />;
+
+        else if(activeSection === "Experience") return <ExperienceInput 
+            company={props.company} setCompany={props.setCompany}
+            position={props.position} setPosition={props.setPosition}
+            locality={props.locality} setLocality={props.setLocality} 
+            positionDesc={props.locality} setPositionDesc={props.setPositionDesc}
+            monthArr={props.monthArr} setMonthArr={props.setMonthArr}
+            yearArr={props.yearArr} setYearArr={props.setYearArr}
+            monthEnd={props.monthEnd} setMonthEnd={props.setMonthEnd}
+            yearEnd={props.yearEnd} setYearEnd={props.setYearEnd}
+            reasonTerm={props.reasonTerm} setReasonTerm={props.setReasonTerm}
+        />;
+
         else if(activeSection === "Education") return <Education />;
+
         else if(activeSection === "Skills") return <Skills />;
+        
         else if(activeSection === "Other") return <Others />;
     }
     return (

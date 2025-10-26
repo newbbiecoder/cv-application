@@ -1,12 +1,7 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
-export default function ExperienceInput() {
+export default function ExperienceInput(props) {
     const [forms, setForms] = useState([]);
-
-    const addForm = () => {
-        setForms([...forms, <JobInfo key={crypto.randomUUID()} />])
-    }
-    
 
     return (
         <div className="experience">
@@ -22,7 +17,7 @@ export default function ExperienceInput() {
                 </div>
                 
 
-                <button className="add-position" onClick={addForm}>
+                <button className="add-position" onClick={() => setForms([...forms, <JobInfo key={crypto.randomUUID()} {...props}/>])}>
                     <p>Add a position</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                 </button>
@@ -36,14 +31,38 @@ export default function ExperienceInput() {
     )
 }
 
-function JobInfo() {
+function JobInfo(props) {
     const [fieldsHide, setFieldsHide] = useState(false);
+
+    const handleNameChange = (e, fieldName) => {
+        if(fieldName === "Company") props.setCompany(e.target.value);
+        else if(fieldName === "Position") props.setPosition(e.target.value);
+        else if(fieldName === "Locality") props.setLocality(e.target.value);
+        else if(fieldName === "pos-desc") props.setPositionDesc(e.target.value);
+        else if(fieldName === "month-arr") props.setMonthArr(e.target.value);
+        else if(fieldName === "year-arr") props.setYearArr(e.target.value);
+        else if(fieldName === "month-end") props.setMonthEnd(e.target.value);
+        else if(fieldName === "year-end") props.setYearEnd(e.target.value);
+        else if(fieldName === "reason-term") props.setReasonTerm(e.target.value);
+    }
     
-    const formFields = [
+    const setValue = (valueFieldName) => {
+        valueFieldName === "Company" ? props.company : "";
+        valueFieldName === "Position" ? props.position : "";
+        valueFieldName === "Locality" ? props.locality : "";
+        valueFieldName === "pos-desc" ? props.positionDesc : "";
+        valueFieldName === "month-arr" ? props.monthArr : "";
+        valueFieldName === "year-arr" ? props.yearArr : "";
+        valueFieldName === "month-end" ? props.monthEnd : "";
+        valueFieldName === "year-end" ? props.yearEnd : "";
+        valueFieldName === "reason-term" ? props.reasonTerm : "";
+    }
+    
+    const formFields = useMemo(() => [
         {name: "Position", id: crypto.randomUUID()},
         {name: "Company", id: crypto.randomUUID()},
         {name: "Locality", id: crypto.randomUUID()}
-    ]
+    ],[]);
 
     const addFields = (e) => {
         setFieldsHide(!fieldsHide);
@@ -93,22 +112,26 @@ function JobInfo() {
                             {field.name} {' '}
                             <span>*</span>
                         </p>
-                        <input type="text" name={field.name} id={field.name} />
+                        <input type="text" name={field.name} id={field.name} 
+                        onChange={(e) => handleNameChange(e, field.name)}
+                        value={setValue(field.name)}
+                        />
                     </label>
                 ))}
                 <label htmlFor="pos-desc" key={crypto.randomUUID()}>
                     Position description 
-                    <textarea name="pos-desc" id="pos-desc"></textarea>
+                    <textarea name="pos-desc" id="pos-desc" onChange={(e) => handleNameChange(e, "pos-desc")} value={setValue("pos-desc")}></textarea>
                 </label>
 
                 <div className="company-arrival">
                     <label htmlFor="month-arr" key={crypto.randomUUID()}>
                         Month of Arrival
-                        <input type="text" name="month-arr" id="month-arr"/>
+                        <input type="text" name="month-arr" id="month-arr" onChange={(e) => handleNameChange(e, "month-arr")} value={setValue("month-arr")}/>
                     </label>
                     <label htmlFor="year-arr" key={crypto.randomUUID()}>
                         Year of entry
-                        <input type="number" name="year-arr" id="year-arr" />
+                        <input type="number" name="year-arr" id="year-arr" onChange={(e) => handleNameChange(e, "year-arr")}
+                        value={setValue("year-arr")}/>
                     </label>
                 </div>
 
@@ -119,17 +142,19 @@ function JobInfo() {
                 <div className="company-left">
                     <label htmlFor="month-end" key={crypto.randomUUID()}>
                         End Month
-                        <input type="text" name="month-end" id="month-end" />
+                        <input type="text" name="month-end" id="month-end" onChange={(e) => handleNameChange(e, "month-end")}
+                        value={setValue("month-end")}/>
                     </label>
                     <label htmlFor="year-end" key={crypto.randomUUID()}>
                         Year of termination
-                        <input type="number" name="year-end" id="year-end" />
+                        <input type="number" name="year-end" id="year-end" onChange={(e) => handleNameChange(e, "year-end")}
+                        value={setValue("year-end")}/>
                     </label>
                 </div>
 
                 <label htmlFor="reason-term" key={crypto.randomUUID()}>
                     Reason for termination
-                    <textarea name="reason-term" id="reason-term"></textarea>
+                    <textarea name="reason-term" id="reason-term" onChange={(e) => handleNameChange(e, "reason-term")} value={setValue("reason-term")}></textarea>
                 </label>
 
                 <button className="remove-position" onClick={removeForm}>

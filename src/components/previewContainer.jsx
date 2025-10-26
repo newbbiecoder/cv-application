@@ -3,17 +3,30 @@ export default function PreviewContainer(props) {
         <div className="resume">
             <div className="left-side">
                 <LeftSide
+                    //PersonalInput
                     aboutMe={props.aboutMe}
                 />
             </div>
             <div className="right-side">
                 <RightSide 
+                    //PersonalInput
                     userName={props.userName}
                     surName={props.surName}
                     mail={props.mail}
                     phoneNumber={props.phoneNumber}
                     residence={props.residence}
                     website={props.website}
+
+                    //Experience
+                    company={props.company}
+                    position={props.position}
+                    locality={props.locality}
+                    positionDesc={props.positionDesc}
+                    monthArr={props.monthArr}
+                    yearArr={props.yearArr}
+                    monthEnd={props.monthEnd}
+                    yearEnd={props.yearEnd}
+                    reasonTerm={props.reasonTerm}
                 />
             </div>
         </div>
@@ -84,19 +97,23 @@ function RightSide(props) {
                 <h3>Work Experience</h3>
                 <div className="new-job-exp">
                     <div className="about-job">
-                        <p className="company">Company, </p>
-                        <p className="position">Position</p>
+                        <p className="company">{props.company}</p>
+                        <p className="position">{props.position}</p>
                     </div>
                     <div className="job-duration-location">
-                        <p className="job-duration">2020-2023 | </p>
-                        <p className="job-location">Ohio</p>
+                            {props.monthEnd === "" ? (
+                                <p className="job-duration">{props.monthArr} {props.yearArr} present</p> 
+                            ) : (
+                                <p className="job-duration">{props.monthArr} {props.yearArr}-{props.monthEnd} {props.yearEnd}</p>
+                            )}
+                        <p className="job-location">{props.locality}</p>
                     </div>
                     <div className="job-desc">
-                        Job very good very bad hhahah
+                        {props.positionDesc}
                     </div>
-                    <div className="job-term">
+                    <div className="job-term" style={{display: props.monthEnd === "" ? 'none' : 'block'}}>
                         <p>Reason for termination: </p>
-                        <p className="reason-term">Farts too much</p>
+                        <p className="reason-term">{props.reasonTerm}</p>
                     </div>
                 </div>
             </div>
