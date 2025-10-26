@@ -796,4 +796,9 @@ label[for="school-end"].studying-hidden {
     flex: 2;
     background-color: white;
     padding-left: 2rem;
+
+    .fullName {
+        display: flex;
+        gap: 0.5rem;
+    }
 }

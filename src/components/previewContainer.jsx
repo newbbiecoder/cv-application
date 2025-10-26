@@ -1,22 +1,31 @@
-export default function PreviewContainer() {
+export default function PreviewContainer(props) {
     return (
         <div className="resume">
             <div className="left-side">
-                <LeftSide />
+                <LeftSide
+                    aboutMe={props.aboutMe}
+                />
             </div>
             <div className="right-side">
-                <RightSide />
+                <RightSide 
+                    userName={props.userName}
+                    surName={props.surName}
+                    mail={props.mail}
+                    phoneNumber={props.phoneNumber}
+                    residence={props.residence}
+                    website={props.website}
+                />
             </div>
         </div>
     )
 }
 
-function LeftSide() {
+function LeftSide(props) {
     return (
         <>
             {/* <img src="" alt="" /> */}
             <div className="about-me">
-                <p>About Me</p>
+                <p>{props.aboutMe}</p>
                 {/* about-me_userInput */}
             </div>
 
@@ -39,31 +48,34 @@ function LeftSide() {
     )
 }
 
-function RightSide() {
+function RightSide(props) {
     return (
         <>
-            <h2>Name</h2>
+            <div className="fullName">
+                <div className="name">{props.userName}</div>
+                <div className="surname">{props.surName}</div>
+            </div>
             <div className="header">
                 <div>
                     <div className="mail">
                         {/* <img src="" alt="" /> */}
-                        <p>newmail@gmail.com</p>
+                        <p>{props.mail}</p>
                     </div>
                     
                     <div className="phoneNumber">
                         {/* <img src="" alt="" /> */}
-                        <p>123456789</p>
+                        <p>{props.phoneNumber}</p>
                     </div>
                 </div>  
 
                 <div>
                     <div className="residence">
                         {/* <img src="" alt="" /> */}
-                        <p>Delhi</p>
+                        <p>{props.residence}</p>
                     </div>
                     <div className="website">
                         {/* <img src="" alt="" /> */}
-                        <p>google.com</p>
+                        <p>{props.website}</p>
                     </div>
                 </div>
             </div>
