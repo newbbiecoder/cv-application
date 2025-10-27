@@ -5,6 +5,9 @@ export default function PreviewContainer(props) {
                 <LeftSide
                     //PersonalInput
                     aboutMe={props.aboutMe}
+
+                    //Skills
+                    skills={props.skills}
                 />
             </div>
             <div className="right-side">
@@ -34,6 +37,7 @@ export default function PreviewContainer(props) {
                     schoolType={props.schoolType}
                     schoolStartYear={props.schoolStartYear}
                     schoolEndYear={props.schoolEndYear}
+                    
                 />
             </div>
         </div>
@@ -52,7 +56,7 @@ function LeftSide(props) {
             <div className="skills">
                 Skills
                 <ul>
-                    {/* <li>s</li> */}
+                    <li>{props.skills}</li>
                 </ul>
             </div>
 

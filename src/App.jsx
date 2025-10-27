@@ -31,6 +31,9 @@ export default function makeContainers() {
   const [schoolStartYear, setSchoolStartYear] = useState("");
   const [schoolEndYear, setSchoolEndYear] = useState("");
 
+  //Skills
+  const [skills, setSkills] = useState("");
+
   return (
     <>
       <div className="edit-container">
@@ -61,6 +64,9 @@ export default function makeContainers() {
           schoolType={schoolType} setSchoolType={setSchoolType}
           schoolStartYear={schoolStartYear} setSchoolStartYear={setSchoolStartYear}
           schoolEndYear={schoolEndYear} setSchoolEndYear={setSchoolEndYear}
+
+          //Skills
+          skills={skills} setSkills={setSkills}
         />
       </div>
       <div className="preview-container">
@@ -91,6 +97,9 @@ export default function makeContainers() {
           schoolType={schoolType}
           schoolStartYear={schoolStartYear}
           schoolEndYear={schoolEndYear}
+
+          //Skills
+          skills={skills}
         /> 
       </div>
     </>

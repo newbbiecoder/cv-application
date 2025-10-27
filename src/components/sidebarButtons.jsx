@@ -47,7 +47,9 @@ export default function SideBarButtons(props) {
             schoolEndYear={props.schoolEndYear} setSchoolEndYear={props.setSchoolEndYear}
         />;
 
-        else if(activeSection === "Skills") return <Skills />;
+        else if(activeSection === "Skills") return <Skills 
+            skills={props.skills} setSkills={props.setSkills}
+        />;
         
         else if(activeSection === "Other") return <Others />;
     }

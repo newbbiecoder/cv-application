@@ -790,6 +790,12 @@ label[for="school-end"].studying-hidden {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    .skills {
+        ul {
+            list-style-type: none;
+        }
+    }
 }
 
 .right-side {

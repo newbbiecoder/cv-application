@@ -1,11 +1,12 @@
 import { useState } from "react"
 
-export default function Skills() {
+export default function Skills(props) {
     const [forms, setForms] = useState([]);
 
     const addForm = () => {
-        setForms([...forms, <SkillInfo key={crypto.randomUUID()} />])
+        setForms([...forms, <SkillInfo key={crypto.randomUUID()} {...props}/>])
     }
+
     return (
         <div className="skills">
             <h3>Skills</h3>
@@ -32,7 +33,7 @@ export default function Skills() {
     )
 }
 
-function SkillInfo() {
+function SkillInfo(props) {
     const removeField = (e) => {
         if(e.target.tagName === 'path') {
             e.target.parentElement.parentElement.remove();
@@ -45,7 +46,7 @@ function SkillInfo() {
     return (
         <div className="skill-field">
             <label htmlFor="skillName" id={crypto.randomUUID()}>
-                <input type="text" name="skillName" />
+                <input type="text" name="skillName" onChange={(e) => props.setSkills(e.target.value)}/>
             </label>
             <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
