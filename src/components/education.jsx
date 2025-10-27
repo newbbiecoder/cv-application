@@ -1,11 +1,7 @@
 import { useState } from "react";
 
-export default function Education() {
+export default function Education(props) {
     const [forms, setForms] = useState([]);
-
-    const addForm = () => {
-        setForms([...forms, <EducationInfo key={crypto.randomUUID()} />])
-    }
 
     return (
         <div className="education">
@@ -17,7 +13,7 @@ export default function Education() {
                 {forms}
             </div>
 
-            <button className="add-education" onClick={addForm}>
+            <button className="add-education" onClick={() => setForms([...forms, <EducationInfo key={crypto.randomUUID()} {...props}/>])}>
                 <p>Add Education</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
@@ -30,8 +26,18 @@ export default function Education() {
     )
 }
 
-function EducationInfo() {
+function EducationInfo(props) {
     const [fieldsHide, setFieldsHide] = useState(false);
+
+    const handleNameChange = (e, fieldName) => {
+        if(fieldName === "school-name") props.setSchoolName(e.target.value);
+        else if(fieldName === "field-study") props.setSchoolRole(e.target.value);
+        else if(fieldName === "elem-sch" || fieldName === "sec-voc-sch" 
+                || fieldName === "high-sch" || fieldName === "high-voc-sch" 
+                || fieldName === "college") props.setSchoolType(e.target.value);
+        else if(fieldName === "school-start") props.setSchoolStartYear(e.target.value);
+        else if(fieldName === "school-end") props.setSchoolEndYear(e.target.value);
+    }
 
     const addFields = (e) => {
         setFieldsHide(!fieldsHide);
@@ -79,35 +85,35 @@ function EducationInfo() {
                         Name of institution
                         <span>*</span>
                     </p>
-                    <input type="text" name="school-name" id="school-name" />
+                    <input type="text" name="school-name" id="school-name" onChange={(e) => handleNameChange(e, "school-name")}/>
                 </label>
                 <label htmlFor="field-study" id="field-study">
                     Field of study
-                    <input type="text" name="field-study" id="field-study" />
+                    <input type="text" name="field-study" id="field-study" onChange={(e) => handleNameChange(e, "field-study")}/>
                 </label>
                 <div className="school-type">
                     <div>
-                        <input type="radio" name="educ" id="elem-sch" value="Elementary school"/>
+                        <input type="radio" name="educ" id="elem-sch" value="Elementary school" onChange={(e) => handleNameChange(e, "elem-sch")}/>
                         <label htmlFor="elem-sch" id="elem-sch">Elementary school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="sec-voc-sch" value="Secondary vocational school"/>
+                        <input type="radio" name="educ" id="sec-voc-sch" value="Secondary vocational school" onChange={(e) => handleNameChange(e, "sec-voc-sch")}/>
                         <label htmlFor="sec-voc-sch" id="elem-sch">Secondary vocational school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="high-sch" value="High school"/>
+                        <input type="radio" name="educ" id="high-sch" value="High school" onChange={(e) => handleNameChange(e, "high-sch")}/>
                         <label htmlFor="high-sch" id="high-sch">High school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="high-voc-sch" value="Higher Vocational School" />
+                        <input type="radio" name="educ" id="high-voc-sch" value="Higher Vocational School" onChange={(e) => handleNameChange(e, "high-voc-sch")}/>
                         <label htmlFor="high-voc-sch" id="high-sch">Higher Vocational School</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="college" value="College"/>
+                        <input type="radio" name="educ" id="college" value="College" onChange={(e) => handleNameChange(e, "college")}/>
                         <label htmlFor="college">College</label>
                     </div> 
                 </div>
@@ -117,7 +123,7 @@ function EducationInfo() {
                         Year of start of study
                         <span>*</span>
                     </p>
-                    <input type="number" name="school-start" id="school-start" />
+                    <input type="number" name="school-start" id="school-start" onChange={(e) => handleNameChange(e, "school-start")}/>
                 </label>
 
                 <div className="still-studying">
@@ -129,7 +135,7 @@ function EducationInfo() {
                         Year of Graduation
                         <span>*</span>
                     </p>
-                    <input type="number" name="school-end" id="school-end" />
+                    <input type="number" name="school-end" id="school-end" onChange={(e) => handleNameChange(e, "school-end")}/>
                 </label>
 
                 <button className="remove-education" onClick={removeForm}>

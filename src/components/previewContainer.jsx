@@ -27,6 +27,13 @@ export default function PreviewContainer(props) {
                     monthEnd={props.monthEnd}
                     yearEnd={props.yearEnd}
                     reasonTerm={props.reasonTerm}
+
+                    //Education
+                    schoolName={props.schoolName}
+                    schoolRole={props.schoolRole}
+                    schoolType={props.schoolType}
+                    schoolStartYear={props.schoolStartYear}
+                    schoolEndYear={props.schoolEndYear}
                 />
             </div>
         </div>
@@ -120,16 +127,19 @@ function RightSide(props) {
 
             <div className="education">
                 <h4>Education</h4>
-                <p className="school-name">Buisness School</p>
+                <p className="school-name">{props.schoolName}</p>
 
                 <div className="school-duration">
-                    <p className="year-start">2015</p>
-                    <p className="year-end">2020</p>
+                    {props.schoolEndYear === "" ? (
+                        <p className="year-start">{props.schoolStartYear} present</p> 
+                    ) : (
+                        <p className="year-start-end">{props.schoolStartYear}-{props.schoolEndYear}</p>
+                    )}
                 </div>
                 
                 <div className="school-type-role">
-                    <p className="school-type">Secondary school</p>
-                    <p className="school-role">Buisness academy</p>
+                    <p className="school-type">{props.schoolType}</p>
+                    <p className="school-role">{props.schoolRole}</p>
                 </div>
             </div>
 

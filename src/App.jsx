@@ -24,6 +24,13 @@ export default function makeContainers() {
   const [yearEnd, setYearEnd] = useState("");
   const [reasonTerm, setReasonTerm] = useState("");
 
+  //Education
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolRole, setSchoolRole] = useState("");
+  const [schoolType, setSchoolType] = useState("");
+  const [schoolStartYear, setSchoolStartYear] = useState("");
+  const [schoolEndYear, setSchoolEndYear] = useState("");
+
   return (
     <>
       <div className="edit-container">
@@ -47,6 +54,13 @@ export default function makeContainers() {
           monthEnd={monthEnd} setMonthEnd={setMonthEnd}
           yearEnd={yearEnd} setYearEnd={setYearEnd}
           reasonTerm={reasonTerm} setReasonTerm={setReasonTerm}
+
+          //Education
+          schoolName={schoolName} setSchoolName={setSchoolName}
+          schoolRole={schoolRole} setSchoolRole={setSchoolRole}
+          schoolType={schoolType} setSchoolType={setSchoolType}
+          schoolStartYear={schoolStartYear} setSchoolStartYear={setSchoolStartYear}
+          schoolEndYear={schoolEndYear} setSchoolEndYear={setSchoolEndYear}
         />
       </div>
       <div className="preview-container">
@@ -70,6 +84,13 @@ export default function makeContainers() {
           monthEnd={monthEnd}
           yearEnd={yearEnd}
           reasonTerm={reasonTerm}
+
+          //Education
+          schoolName={schoolName}
+          schoolRole={schoolRole}
+          schoolType={schoolType}
+          schoolStartYear={schoolStartYear}
+          schoolEndYear={schoolEndYear}
         /> 
       </div>
     </>

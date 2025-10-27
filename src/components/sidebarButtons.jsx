@@ -39,7 +39,13 @@ export default function SideBarButtons(props) {
             reasonTerm={props.reasonTerm} setReasonTerm={props.setReasonTerm}
         />;
 
-        else if(activeSection === "Education") return <Education />;
+        else if(activeSection === "Education") return <Education 
+            schoolName={props.schoolName} setSchoolName={props.setSchoolName}
+            schoolRole={props.schoolRole} setSchoolRole={props.setSchoolRole}
+            schoolType={props.schoolType} setSchoolType={props.setSchoolType}
+            schoolStartYear={props.schoolStartYear} setSchoolStartYear={props.setSchoolStartYear}
+            schoolEndYear={props.schoolEndYear} setSchoolEndYear={props.setSchoolEndYear}
+        />;
 
         else if(activeSection === "Skills") return <Skills />;
         
