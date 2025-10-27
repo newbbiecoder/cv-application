@@ -3,6 +3,10 @@ import { useState } from "react";
 export default function Education(props) {
     const [forms, setForms] = useState([]);
 
+    const removeForm = (id) => {
+        setForms(forms.filter((form) => form.id !== id));
+    };
+
     return (
         <div className="education">
             <h3>Education</h3>
@@ -13,7 +17,7 @@ export default function Education(props) {
                 {forms}
             </div>
 
-            <button className="add-education" onClick={() => setForms([...forms, <EducationInfo key={crypto.randomUUID()} {...props}/>])}>
+            <button className="add-education" onClick={() => setForms([...forms, <EducationInfo key={crypto.randomUUID()} removeForm={removeForm} {...props}/>])}>
                 <p>Add Education</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
@@ -49,10 +53,6 @@ function EducationInfo(props) {
             ) : (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.remove('hide')
             : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.remove('hide')
             : e.target.parentNode.classList.remove('hide');
-    }
-
-    const removeForm = (e) => {
-        e.target.parentElement.parentElement.parentElement.remove();
     }
 
     const addTick = (e) => {
@@ -138,7 +138,7 @@ function EducationInfo(props) {
                     <input type="number" name="school-end" id="school-end" onChange={(e) => handleNameChange(e, "school-end")}/>
                 </label>
 
-                <button className="remove-education" onClick={removeForm}>
+                <button className="remove-education" onClick={props.removeForm}>
                     <p>Remove this education</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
                 </button>
