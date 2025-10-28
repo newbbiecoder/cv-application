@@ -124,7 +124,7 @@ function RightSide(props) {
                             {props.monthEnd === "" ? (
                                 <p className="job-duration">{props.monthArr} {props.yearArr} present</p> 
                             ) : (
-                                <p className="job-duration">{props.monthArr} {props.yearArr}-{props.monthEnd} {props.yearEnd}</p>
+                                <p className="job-duration">{props.monthArr} {props.yearArr} - {props.monthEnd} {props.yearEnd}</p>
                             )}
                         <p className="job-location">| {props.locality}</p>
                     </div>
@@ -146,12 +146,12 @@ function RightSide(props) {
                     {props.schoolEndYear === "" ? (
                         <p className="year-start">{props.schoolStartYear} present</p> 
                     ) : (
-                        <p className="year-start-end">{props.schoolStartYear}-{props.schoolEndYear}</p>
+                        <p className="year-start-end">{props.schoolStartYear} - {props.schoolEndYear}</p>
                     )}
                 </div>
                 
                 <div className="school-type-role">
-                    <p className="school-type">{props.schoolType}</p>
+                    <p className="school-type">{props.schoolType},</p>
                     <p className="school-role">{props.schoolRole}</p>
                 </div>
             </div>

@@ -917,3 +917,28 @@ label[for="school-end"].studying-hidden {
     display: flex;
     gap: 0.5rem;
 }
+
+.education {
+    h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .school-name {
+        font-size: 1.1rem;
+        color: rgb(94, 94, 229);
+        font-weight: bold;
+    }
+
+    .school-duration {
+        color: rgb(79, 78, 78);
+        font-size: 1.1rem;
+    }
+
+    .school-type-role {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 1.2rem;
+        gap: 0.4rem;
+    }
+}
