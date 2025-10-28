@@ -1,20 +1,20 @@
 import { useState } from "react"
 
-export default function Others() {
+export default function Others(props) {
     const [langs, setLang] = useState([]);
     const [interests, setInterests] = useState([]);
     const [certificates, setCertificates] = useState([]);
 
     const addLang = () => {
-        setLang([...langs, <LanguageInfo key={crypto.randomUUID()} />]);
+        setLang([...langs, <LanguageInfo key={crypto.randomUUID()} {...props}/>]);
     }
 
     const addInterests = () => {
-        setInterests([...interests, <InterestsInfo key={crypto.randomUUID()} />]);
+        setInterests([...interests, <InterestsInfo key={crypto.randomUUID()} {...props}/>]);
     }
 
     const addCertificates = () => {
-        setCertificates([...certificates, <CertificatesInfo key={crypto.randomUUID()} />]);
+        setCertificates([...certificates, <CertificatesInfo key={crypto.randomUUID()} {...props}/>]);
     }
 
     return (
@@ -67,7 +67,7 @@ export default function Others() {
     )
 }
 
-function LanguageInfo() {
+function LanguageInfo(props) {
     const removeField = (e) => {
         if(e.target.tagName === 'path') {
             e.target.parentElement.parentElement.remove();
@@ -80,14 +80,14 @@ function LanguageInfo() {
     return (
         <div className="other-fields">
             <label htmlFor="langName" id={crypto.randomUUID()}>
-                <input type="text" name="langName" />
+                <input type="text" name="langName" onChange={(e) => props.setLanguages(e.target.value)}/>
             </label>
             <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
     )
 }
 
-function InterestsInfo() {
+function InterestsInfo(props) {
     const removeField = (e) => {
         if(e.target.tagName === 'path') {
             e.target.parentElement.parentElement.remove();
@@ -100,14 +100,14 @@ function InterestsInfo() {
     return(
         <div className="other-fields">
             <label htmlFor="interestName" id={crypto.randomUUID()}>
-                <input type="text" name="interestName" />
+                <input type="text" name="interestName" onChange={(e) => props.setInterests(e.target.value)}/>
             </label>
             <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
     )
 }
 
-function CertificatesInfo() {
+function CertificatesInfo(props) {
     const [fieldsHide, setFieldsHide] = useState(false);
 
     const addFields = (e) => {
@@ -139,11 +139,11 @@ function CertificatesInfo() {
             <div className={fieldsHide ? "certificate-fields hidden" : "certificate-fields"}>
                 <label htmlFor="link-text" key={crypto.randomUUID()}>
                     <p>Link Text</p>
-                    <input type="text" name="link-text" />
+                    <input type="text" name="link-text" onChange={(e) => props.setCertificateText(e.target.value)}/>
                 </label>
                 <label htmlFor="URL" key={crypto.randomUUID()}>
                     <p>URL</p>
-                    <input type="url" name="URL" />
+                    <input type="url" name="URL" onChange={(e) => props.setCertificateLink(e.target.value)}/>
                 </label>
                 <button className="remove-certificate" onClick={removeForm}>
                     <p>Remove this certificate</p>

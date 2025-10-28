@@ -34,6 +34,12 @@ export default function makeContainers() {
   //Skills
   const [skills, setSkills] = useState("");
 
+  //Languages
+  const [languages, setLanguages] = useState("");
+  const [interests, setInterests] = useState("");
+  const [certificateText, setCertificateText] = useState("");
+  const [certificateLink, setCertificateLink] = useState("");
+
   return (
     <>
       <div className="edit-container">
@@ -67,6 +73,12 @@ export default function makeContainers() {
 
           //Skills
           skills={skills} setSkills={setSkills}
+
+          //Languages
+          languages={languages} setLanguages={setLanguages}
+          interests={interests} setInterests={setInterests}
+          certificateText={certificateText} setCertificateText={setCertificateText}
+          certificateLink={certificateLink} setCertificateLink={setCertificateLink}
         />
       </div>
       <div className="preview-container">
@@ -100,6 +112,12 @@ export default function makeContainers() {
 
           //Skills
           skills={skills}
+
+          //Others
+          languages={languages}
+          interests={interests}
+          certificateText={certificateText}
+          certificateLink={certificateLink}
         /> 
       </div>
     </>

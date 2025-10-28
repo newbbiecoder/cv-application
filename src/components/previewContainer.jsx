@@ -8,6 +8,10 @@ export default function PreviewContainer(props) {
 
                     //Skills
                     skills={props.skills}
+
+                    //Others
+                    languages={props.languages}
+                    interests={props.interests}
                 />
             </div>
             <div className="right-side">
@@ -37,7 +41,10 @@ export default function PreviewContainer(props) {
                     schoolType={props.schoolType}
                     schoolStartYear={props.schoolStartYear}
                     schoolEndYear={props.schoolEndYear}
-                    
+
+                    //Others
+                    certificateText={props.certificateText}
+                    certificateLink={props.certificateLink}
                 />
             </div>
         </div>
@@ -49,23 +56,25 @@ function LeftSide(props) {
         <>
             {/* <img src="" alt="" /> */}
             <div className="about-me">
+                <h4>About Me</h4>
                 <p>{props.aboutMe}</p>
-                {/* about-me_userInput */}
             </div>
 
             <div className="skills">
-                Skills
+                <h4>Skills</h4>
                 <ul>
                     <li>{props.skills}</li>
                 </ul>
             </div>
 
             <div className="language">
-                {/* languages */}
+                <h4>Languages</h4>
+                <p>{props.languages}</p>
             </div> 
 
             <div className="interest">
-                {/* interest */}
+                <h4>Interests</h4>
+                <p>{props.interests}</p>
             </div>
 
         </>
@@ -149,7 +158,7 @@ function RightSide(props) {
 
             <div className="certification">
                 <h4>Certification</h4>
-                <p><a href="https://google.com">Certificate name</a></p>
+                <p><a href={props.certificateLink}>{props.certificateText}</a></p>
             </div>
         </>
     )

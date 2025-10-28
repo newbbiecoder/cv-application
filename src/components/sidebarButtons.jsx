@@ -51,7 +51,12 @@ export default function SideBarButtons(props) {
             skills={props.skills} setSkills={props.setSkills}
         />;
         
-        else if(activeSection === "Other") return <Others />;
+        else if(activeSection === "Other") return <Others 
+            languages={props.languages} setLanguages={props.setLanguages}
+            interests={props.interests} setInterests={props.setInterests}
+            certificateText={props.certificateText} setCertificateText={props.setCertificateText}
+            certificateLink={props.certificateLink} setCertificateLink={props.setCertificateLink}
+        />;
     }
     return (
         <>
