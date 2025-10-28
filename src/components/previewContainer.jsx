@@ -117,7 +117,7 @@ function RightSide(props) {
                 <h3>Work Experience</h3>
                 <div className="new-job-exp">
                     <div className="about-job">
-                        <p className="company">{props.company}</p>
+                        <p className="company">{props.company},</p>
                         <p className="position">{props.position}</p>
                     </div>
                     <div className="job-duration-location">
@@ -126,12 +126,12 @@ function RightSide(props) {
                             ) : (
                                 <p className="job-duration">{props.monthArr} {props.yearArr}-{props.monthEnd} {props.yearEnd}</p>
                             )}
-                        <p className="job-location">{props.locality}</p>
+                        <p className="job-location">| {props.locality}</p>
                     </div>
                     <div className="job-desc">
                         {props.positionDesc}
                     </div>
-                    <div className="job-term" style={{display: props.monthEnd === "" ? 'none' : 'block'}}>
+                    <div className="job-term" style={{display: props.monthEnd === "" ? 'none' : 'flex'}}>
                         <p>Reason for termination: </p>
                         <p className="reason-term">{props.reasonTerm}</p>
                     </div>
