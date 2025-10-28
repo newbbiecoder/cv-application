@@ -62,19 +62,17 @@ function LeftSide(props) {
 
             <div className="skills">
                 <h4>Skills</h4>
-                <ul>
-                    <li>{props.skills}</li>
-                </ul>
+                <p>-&gt; {props.skills}</p>
             </div>
 
             <div className="language">
                 <h4>Languages</h4>
-                <p>{props.languages}</p>
+                <p>-&gt; {props.languages}</p>
             </div> 
 
             <div className="interest">
                 <h4>Interests</h4>
-                <p>{props.interests}</p>
+                <p>-&gt; {props.interests}</p>
             </div>
 
         </>
