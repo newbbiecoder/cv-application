@@ -18,7 +18,7 @@ export default function Others(props) {
     }
 
     return (
-        <div className="others">
+        <>
             <h3>Language</h3>
             <p>Add languages that you are able to communicate </p>
             <p>at least a little.</p>
@@ -63,7 +63,7 @@ export default function Others(props) {
                 Finish CV
                 {/* <img src="" alt="" /> */}
             </button>
-        </div>
+        </>
     )
 }
 

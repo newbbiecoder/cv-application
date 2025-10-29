@@ -8,7 +8,7 @@ export default function Education(props) {
     };
 
     return (
-        <div className="education">
+        <>
             <h3>Education</h3>
             <p>Your education data can help recruiters determine</p>
             <p>if you're a good fit for the position.</p>
@@ -26,7 +26,7 @@ export default function Education(props) {
                 <p>Continue to skills</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-thin</title><path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" /></svg>
             </button>
-        </div>
+        </>
     )
 }
 

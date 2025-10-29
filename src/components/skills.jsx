@@ -8,7 +8,7 @@ export default function Skills(props) {
     }
 
     return (
-        <div className="skills">
+        <>
             <h3>Skills</h3>
             <p>Show off what you excel at and what you can do.</p>
             <p>Confirm your previous experience or work goals.</p>
@@ -29,7 +29,7 @@ export default function Skills(props) {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-thin</title><path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" /></svg>
             </button>
 
-        </div>
+        </>
     )
 }
 

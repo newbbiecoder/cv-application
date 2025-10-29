@@ -17,46 +17,60 @@ export default function SideBarButtons(props) {
     ]
 
     function renderActiveSection() {
-        if(activeSection === "Personal data" ) return <PersonalDataInput  
-            userName={props.userName} setUserName={props.setUserName}
-            surName={props.surName} setSurName={props.setSurName}
-            mail={props.mail} setMail={props.setMail}
-            phoneNumber={props.phoneNumber} setPhoneNumber={props.setPhoneNumber}
-            residence={props.residence} setResidence={props.setResidence}
-            website={props.website} setWebsite={props.setWebsite}
-            aboutMe={props.aboutMe} setAboutMe={props.setAboutMe}
-        />;
+        return (
+            <>
+                <div className="personalData" style={{display: activeSection === "Personal data" ? "block" : "none"}}>
+                    <PersonalDataInput  
+                        userName={props.userName} setUserName={props.setUserName}
+                        surName={props.surName} setSurName={props.setSurName}
+                        mail={props.mail} setMail={props.setMail}
+                        phoneNumber={props.phoneNumber} setPhoneNumber={props.setPhoneNumber}
+                        residence={props.residence} setResidence={props.setResidence}
+                        website={props.website} setWebsite={props.setWebsite}
+                        aboutMe={props.aboutMe} setAboutMe={props.setAboutMe}
+                    />
+                </div>
 
-        else if(activeSection === "Experience") return <ExperienceInput 
-            company={props.company} setCompany={props.setCompany}
-            position={props.position} setPosition={props.setPosition}
-            locality={props.locality} setLocality={props.setLocality} 
-            positionDesc={props.locality} setPositionDesc={props.setPositionDesc}
-            monthArr={props.monthArr} setMonthArr={props.setMonthArr}
-            yearArr={props.yearArr} setYearArr={props.setYearArr}
-            monthEnd={props.monthEnd} setMonthEnd={props.setMonthEnd}
-            yearEnd={props.yearEnd} setYearEnd={props.setYearEnd}
-            reasonTerm={props.reasonTerm} setReasonTerm={props.setReasonTerm}
-        />;
+                <div className="experience" style={{display: activeSection === "Experience" ? "block" : "none"}}>
+                    <ExperienceInput 
+                        company={props.company} setCompany={props.setCompany}
+                        position={props.position} setPosition={props.setPosition}
+                        locality={props.locality} setLocality={props.setLocality} 
+                        positionDesc={props.positionDesc} setPositionDesc={props.setPositionDesc}
+                        monthArr={props.monthArr} setMonthArr={props.setMonthArr}
+                        yearArr={props.yearArr} setYearArr={props.setYearArr}
+                        monthEnd={props.monthEnd} setMonthEnd={props.setMonthEnd}
+                        yearEnd={props.yearEnd} setYearEnd={props.setYearEnd}
+                        reasonTerm={props.reasonTerm} setReasonTerm={props.setReasonTerm}
+                    />
+                </div>
 
-        else if(activeSection === "Education") return <Education 
-            schoolName={props.schoolName} setSchoolName={props.setSchoolName}
-            schoolRole={props.schoolRole} setSchoolRole={props.setSchoolRole}
-            schoolType={props.schoolType} setSchoolType={props.setSchoolType}
-            schoolStartYear={props.schoolStartYear} setSchoolStartYear={props.setSchoolStartYear}
-            schoolEndYear={props.schoolEndYear} setSchoolEndYear={props.setSchoolEndYear}
-        />;
+                <div className="education" style={{display: activeSection === "Education" ? "block" : "none"}}> 
+                    <Education 
+                        schoolName={props.schoolName} setSchoolName={props.setSchoolName}
+                        schoolRole={props.schoolRole} setSchoolRole={props.setSchoolRole}
+                        schoolType={props.schoolType} setSchoolType={props.setSchoolType}
+                        schoolStartYear={props.schoolStartYear} setSchoolStartYear={props.setSchoolStartYear}
+                        schoolEndYear={props.schoolEndYear} setSchoolEndYear={props.setSchoolEndYear}
+                    />
+                </div>
 
-        else if(activeSection === "Skills") return <Skills 
-            skills={props.skills} setSkills={props.setSkills}
-        />;
-        
-        else if(activeSection === "Other") return <Others 
-            languages={props.languages} setLanguages={props.setLanguages}
-            interests={props.interests} setInterests={props.setInterests}
-            certificateText={props.certificateText} setCertificateText={props.setCertificateText}
-            certificateLink={props.certificateLink} setCertificateLink={props.setCertificateLink}
-        />;
+                <div className="skills" style={{display: activeSection === "Skills" ? "block" : "none"}}> 
+                    <Skills 
+                        skills={props.skills} setSkills={props.setSkills}
+                    />
+                </div>
+                
+                <div className="others" style={{display: activeSection === "Other" ? "block" : "none"}}>
+                    <Others 
+                        languages={props.languages} setLanguages={props.setLanguages}
+                        interests={props.interests} setInterests={props.setInterests}
+                        certificateText={props.certificateText} setCertificateText={props.setCertificateText}
+                        certificateLink={props.certificateLink} setCertificateLink={props.setCertificateLink}
+                    />
+                </div>
+            </>
+        )
     }
     return (
         <>

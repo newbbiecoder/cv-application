@@ -4,7 +4,7 @@ export default function ExperienceInput(props) {
     const [forms, setForms] = useState([]);
 
     return (
-        <div className="experience">
+        <>
             <h3>Work experience</h3>
             <p>Complete your work experience from the newest to</p>
             <p>the oldest. Remember that the recruiter will devote</p>
@@ -27,7 +27,7 @@ export default function ExperienceInput(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-thin</title><path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" /></svg>
                 </button>
             </div>           
-        </div>
+        </>
     )
 }
 
