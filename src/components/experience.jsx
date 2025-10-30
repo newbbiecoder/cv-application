@@ -118,44 +118,52 @@ function JobInfo(props) {
                         />
                     </label>
                 ))}
-                <label htmlFor="pos-desc" key={crypto.randomUUID()}>
-                    Position description 
-                    <textarea name="pos-desc" id="pos-desc" onChange={(e) => handleNameChange(e, "pos-desc")} value={setValue("pos-desc")}></textarea>
-                </label>
+                {useMemo(() => (
+                    <label htmlFor="pos-desc" key={crypto.randomUUID()}>
+                        Position description 
+                        <textarea name="pos-desc" id="pos-desc" onChange={(e) => handleNameChange(e, "pos-desc")} value={setValue("pos-desc")}></textarea>
+                    </label>
+                ), [])}
 
-                <div className="company-arrival">
-                    <label htmlFor="month-arr" key={crypto.randomUUID()}>
-                        Month of Arrival
-                        <input type="text" name="month-arr" id="month-arr" onChange={(e) => handleNameChange(e, "month-arr")} value={setValue("month-arr")}/>
-                    </label>
-                    <label htmlFor="year-arr" key={crypto.randomUUID()}>
-                        Year of entry
-                        <input type="number" name="year-arr" id="year-arr" onChange={(e) => handleNameChange(e, "year-arr")}
-                        value={setValue("year-arr")}/>
-                    </label>
-                </div>
+                {useMemo(() => (
+                    <div className="company-arrival">
+                        <label htmlFor="month-arr" key={crypto.randomUUID()}>
+                            Month of Arrival
+                            <input type="text" name="month-arr" id="month-arr" onChange={(e) => handleNameChange(e, "month-arr")} value={setValue("month-arr")}/>
+                        </label>
+                        <label htmlFor="year-arr" key={crypto.randomUUID()}>
+                            Year of entry
+                            <input type="number" name="year-arr" id="year-arr" onChange={(e) => handleNameChange(e, "year-arr")}
+                            value={setValue("year-arr")}/>
+                        </label>
+                    </div>
+                ),[])}
 
                 <div className="still-working">
                     <span onClick={addTick}></span> <p>I'm still working here</p>
                 </div>
 
-                <div className="company-left">
-                    <label htmlFor="month-end" key={crypto.randomUUID()}>
-                        End Month
-                        <input type="text" name="month-end" id="month-end" onChange={(e) => handleNameChange(e, "month-end")}
-                        value={setValue("month-end")}/>
-                    </label>
-                    <label htmlFor="year-end" key={crypto.randomUUID()}>
-                        Year of termination
-                        <input type="number" name="year-end" id="year-end" onChange={(e) => handleNameChange(e, "year-end")}
-                        value={setValue("year-end")}/>
-                    </label>
-                </div>
+                {useMemo(() => (
+                    <div className="company-left">
+                        <label htmlFor="month-end" key={crypto.randomUUID()}>
+                            End Month
+                            <input type="text" name="month-end" id="month-end" onChange={(e) => handleNameChange(e, "month-end")}
+                            value={setValue("month-end")}/>
+                        </label>
+                        <label htmlFor="year-end" key={crypto.randomUUID()}>
+                            Year of termination
+                            <input type="number" name="year-end" id="year-end" onChange={(e) => handleNameChange(e, "year-end")}
+                            value={setValue("year-end")}/>
+                        </label>
+                    </div>
+                ), [])}
 
-                <label htmlFor="reason-term" key={crypto.randomUUID()}>
-                    Reason for termination
-                    <textarea name="reason-term" id="reason-term" onChange={(e) => handleNameChange(e, "reason-term")} value={setValue("reason-term")}></textarea>
-                </label>
+                {useMemo(() => (
+                    <label htmlFor="reason-term" key={crypto.randomUUID()}>
+                        Reason for termination
+                        <textarea name="reason-term" id="reason-term" onChange={(e) => handleNameChange(e, "reason-term")} value={setValue("reason-term")}></textarea>
+                    </label>
+                ), [])}
 
                 <button className="remove-position" onClick={removeForm}>
                     <p>Remove this position</p>
