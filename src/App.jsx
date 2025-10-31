@@ -17,12 +17,8 @@ export default function makeContainers() {
   const [experiences, setExperiences] = useState([]);
 
   //Education
-  const [schoolName, setSchoolName] = useState("");
-  const [schoolRole, setSchoolRole] = useState("");
-  const [schoolType, setSchoolType] = useState("");
-  const [schoolStartYear, setSchoolStartYear] = useState("");
-  const [schoolEndYear, setSchoolEndYear] = useState("");
-
+  const [education, setEducation] = useState([]);
+  
   //Skills
   const [skills, setSkills] = useState("");
 
@@ -49,11 +45,7 @@ export default function makeContainers() {
           experiences={experiences} setExperiences={setExperiences}
 
           //Education
-          schoolName={schoolName} setSchoolName={setSchoolName}
-          schoolRole={schoolRole} setSchoolRole={setSchoolRole}
-          schoolType={schoolType} setSchoolType={setSchoolType}
-          schoolStartYear={schoolStartYear} setSchoolStartYear={setSchoolStartYear}
-          schoolEndYear={schoolEndYear} setSchoolEndYear={setSchoolEndYear}
+          education={education} setEducation={setEducation}
 
           //Skills
           skills={skills} setSkills={setSkills}
@@ -80,11 +72,7 @@ export default function makeContainers() {
           experiences={experiences}
 
           //Education
-          schoolName={schoolName}
-          schoolRole={schoolRole}
-          schoolType={schoolType}
-          schoolStartYear={schoolStartYear}
-          schoolEndYear={schoolEndYear}
+          education={education}
 
           //Skills
           skills={skills}

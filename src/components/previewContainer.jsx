@@ -28,11 +28,7 @@ export default function PreviewContainer(props) {
                     experiences={props.experiences}
 
                     //Education
-                    schoolName={props.schoolName}
-                    schoolRole={props.schoolRole}
-                    schoolType={props.schoolType}
-                    schoolStartYear={props.schoolStartYear}
-                    schoolEndYear={props.schoolEndYear}
+                    education={props.education}
 
                     //Others
                     certificateText={props.certificateText}
@@ -108,22 +104,9 @@ function RightSide(props) {
                 <DisplayExperience {...props}/>
             </div>
 
-            <div className="education" style={{display: props.schoolName === "" && props.schoolStartYear === "" && props.schoolEndYear === "" && props.schoolRole === "" && props.schoolType === "" ? 'none' : 'block'}}>
+            <div className="education" style={{display: !props.education || props.education.length === 0 ? 'none' : 'block'}}>
                 <h4>Education</h4>
-                <p className="school-name">{props.schoolName}</p>
-
-                <div className="school-duration">
-                    {props.schoolEndYear === "" ? (
-                        <p className="year-start" style={{display: props.schoolStartYear === "" ? 'none' : 'flex'}}>{props.schoolStartYear} present</p> 
-                    ) : (
-                        <p className="year-start-end">{props.schoolStartYear} - {props.schoolEndYear}</p>
-                    )}
-                </div>
-                
-                <div className="school-type-role">
-                    <p className="school-type" style={{display: props.schoolType === "" ? 'none' : 'flex'}}>{props.schoolType},</p>
-                    <p className="school-role">{props.schoolRole}</p>
-                </div>
+                <DisplayEducation {...props}/>
             </div>
 
             <div className="certification" style={{display: props.certificateLink === "" && props.certificateText === "" ? 'none' : 'block'}}>
@@ -162,5 +145,28 @@ function DisplayExperience({ experiences }) {
             </div>
         </div>
         ))   
+    )
+}
+
+function DisplayEducation( {education} ) {
+    return (
+        education.map(edu => (
+            <div key={edu.id}className="new=edu-exp">
+                <p className="school-name">{edu.schoolName}</p>
+
+                <div className="school-duration">
+                    {edu.schoolEndYear === "" ? (
+                        <p className="year-start" style={{display: edu.schoolStartYear === "" ? 'none' : 'flex'}}>{edu.schoolStartYear} present</p> 
+                    ) : (
+                        <p className="year-start-end">{edu.schoolStartYear} - {edu.schoolEndYear}</p>
+                    )}
+                </div>
+                
+                <div className="school-type-role">
+                    <p className="school-type" style={{display: edu.schoolType === "" ? 'none' : 'flex'}}>{edu.schoolType},</p>
+                    <p className="school-role">{edu.schoolRole}</p>
+                </div>
+            </div>
+        ))
     )
 }

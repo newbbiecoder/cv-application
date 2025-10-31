@@ -1,11 +1,27 @@
 import { useState } from "react";
 
-export default function Education(props) {
-    const [forms, setForms] = useState([]);
+export default function Education({education, setEducation}) {
+    const addEducation = () => {
+        const newEducation = {
+            id: crypto.randomUUID(),
+            schoolName: "",
+            schoolRole: "",
+            schoolType: "",
+            schoolStartYear: "",
+            schoolEndYear: ""
+        }
+        setEducation([...education, newEducation]);
+    }
 
-    const removeForm = (id) => {
-        setForms(forms.filter((form) => form.id !== id));
-    };
+    const updateEducation = (id, field, value) => {
+        setEducation(prev => 
+            prev.map(edu => edu.id === id ? { ...edu, [field]: value } : edu)
+        )
+    }
+
+    const removeEducation = (id) => {
+        setEducation(prev => prev.filter(edu => edu.id !== id))
+    }
 
     return (
         <>
@@ -14,10 +30,17 @@ export default function Education(props) {
             <p>if you're a good fit for the position.</p>
             
             <div className="educations">
-                {forms}
+                {education.map(edu => (
+                    <EducationInfo 
+                        key={edu.id}
+                        education={edu}
+                        updateEducation={updateEducation}
+                        removeEducation={removeEducation}
+                    />
+                ))}
             </div>
 
-            <button className="add-education" onClick={() => setForms([...forms, <EducationInfo key={crypto.randomUUID()} removeForm={removeForm} {...props}/>])}>
+            <button className="add-education" onClick={addEducation}>
                 <p>Add Education</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
@@ -30,17 +53,11 @@ export default function Education(props) {
     )
 }
 
-function EducationInfo(props) {
+function EducationInfo({ education, updateEducation, removeEducation }) {
     const [fieldsHide, setFieldsHide] = useState(false);
 
-    const handleNameChange = (e, fieldName) => {
-        if(fieldName === "school-name") props.setSchoolName(e.target.value);
-        else if(fieldName === "field-study") props.setSchoolRole(e.target.value);
-        else if(fieldName === "elem-sch" || fieldName === "sec-voc-sch" 
-                || fieldName === "high-sch" || fieldName === "high-voc-sch" 
-                || fieldName === "college") props.setSchoolType(e.target.value);
-        else if(fieldName === "school-start") props.setSchoolStartYear(e.target.value);
-        else if(fieldName === "school-end") props.setSchoolEndYear(e.target.value);
+    const handleChange = (e) => {
+        updateEducation(education.id, e.target.name, e.target.value)
     }
 
     const addFields = (e) => {
@@ -85,35 +102,35 @@ function EducationInfo(props) {
                         Name of institution
                         <span>*</span>
                     </p>
-                    <input type="text" name="school-name" id="school-name" onChange={(e) => handleNameChange(e, "school-name")}/>
+                    <input type="text" name="schoolName" id="school-name" value={education.schoolName} onChange={handleChange}/>
                 </label>
                 <label htmlFor="field-study" id="field-study">
                     Field of study
-                    <input type="text" name="field-study" id="field-study" onChange={(e) => handleNameChange(e, "field-study")}/>
+                    <input type="text" name="schoolRole" id="field-study" value={education.schoolRole} onChange={handleChange}/>
                 </label>
                 <div className="school-type">
                     <div>
-                        <input type="radio" name="educ" id="elem-sch" value="Elementary school" onChange={(e) => handleNameChange(e, "elem-sch")}/>
+                        <input type="radio" name="schoolType" id="elem-sch" value="Elementary school" checked={education.schoolType === "Elementary school"} onChange={handleChange} />
                         <label htmlFor="elem-sch" id="elem-sch">Elementary school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="sec-voc-sch" value="Secondary vocational school" onChange={(e) => handleNameChange(e, "sec-voc-sch")}/>
+                        <input type="radio" name="schoolType" id="sec-voc-sch" value="Secondary vocational school" checked={education.schoolType === "Secondary vocational school"} onChange={handleChange}/>
                         <label htmlFor="sec-voc-sch" id="elem-sch">Secondary vocational school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="high-sch" value="High school" onChange={(e) => handleNameChange(e, "high-sch")}/>
+                        <input type="radio" name="schoolType" id="high-sch" value="High school" checked={education.schoolType === "High school"} onChange={handleChange}/>
                         <label htmlFor="high-sch" id="high-sch">High school</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="high-voc-sch" value="Higher Vocational School" onChange={(e) => handleNameChange(e, "high-voc-sch")}/>
+                        <input type="radio" name="schoolType" id="high-voc-sch" value="Higher Vocational School" checked={education.schoolType === "Higher Vocational School"} onChange={handleChange}/>
                         <label htmlFor="high-voc-sch" id="high-sch">Higher Vocational School</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="educ" id="college" value="College" onChange={(e) => handleNameChange(e, "college")}/>
+                        <input type="radio" name="schoolType" id="college" value="College" checked={education.schoolType === "College"} onChange={handleChange}/>
                         <label htmlFor="college">College</label>
                     </div> 
                 </div>
@@ -123,7 +140,7 @@ function EducationInfo(props) {
                         Year of start of study
                         <span>*</span>
                     </p>
-                    <input type="number" name="school-start" id="school-start" onChange={(e) => handleNameChange(e, "school-start")}/>
+                    <input type="number" name="schoolStartYear" id="school-start" value={education.schoolStartYear} onChange={handleChange}/>
                 </label>
 
                 <div className="still-studying">
@@ -135,10 +152,10 @@ function EducationInfo(props) {
                         Year of Graduation
                         <span>*</span>
                     </p>
-                    <input type="number" name="school-end" id="school-end" onChange={(e) => handleNameChange(e, "school-end")}/>
+                    <input type="number" name="schoolEndYear" id="school-end" value={education.schoolEndYear} onChange={handleChange}/>
                 </label>
 
-                <button className="remove-education" onClick={props.removeForm}>
+                <button className="remove-education" onClick={() => removeEducation(education.id)}>
                     <p>Remove this education</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
                 </button>

@@ -40,11 +40,8 @@ export default function SideBarButtons(props) {
 
                 <div className="education" style={{display: activeSection === "Education" ? "block" : "none"}}> 
                     <Education 
-                        schoolName={props.schoolName} setSchoolName={props.setSchoolName}
-                        schoolRole={props.schoolRole} setSchoolRole={props.setSchoolRole}
-                        schoolType={props.schoolType} setSchoolType={props.setSchoolType}
-                        schoolStartYear={props.schoolStartYear} setSchoolStartYear={props.setSchoolStartYear}
-                        schoolEndYear={props.schoolEndYear} setSchoolEndYear={props.setSchoolEndYear}
+                        education={props.education} 
+                        setEducation={props.setEducation}
                     />
                 </div>
 
