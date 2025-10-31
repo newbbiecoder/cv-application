@@ -1,20 +1,63 @@
 import { useState } from "react"
 
-export default function Others(props) {
-    const [langs, setLang] = useState([]);
-    const [interests, setInterests] = useState([]);
-    const [certificates, setCertificates] = useState([]);
+export default function Others({language, setLanguage, interest, setInterest, certificate, setCertificate}) {
 
-    const addLang = () => {
-        setLang([...langs, <LanguageInfo key={crypto.randomUUID()} {...props}/>]);
+    // Language
+    const addLanguage = () => {
+        const newLanguage = {
+            id: crypto.randomUUID(),
+            langName: ""
+        }
+        setLanguage([...language, newLanguage]);
     }
 
-    const addInterests = () => {
-        setInterests([...interests, <InterestsInfo key={crypto.randomUUID()} {...props}/>]);
+    const updateLanguage = (id, field, value) => {
+        setLanguage(prev => 
+            prev.map(lang => lang.id === id ? { ...lang, [field]: value } : lang)
+        )
     }
 
-    const addCertificates = () => {
-        setCertificates([...certificates, <CertificatesInfo key={crypto.randomUUID()} {...props}/>]);
+    const removeLanguage = (id) => {
+        setLanguage(prev => prev.filter(lang => lang.id !== id))
+    }
+
+    // Interest
+    const addInterest = () => {
+        const newInterest = {
+            id: crypto.randomUUID(),
+            interestName: ""
+        }
+        setInterest([...interest, newInterest]);
+    }
+
+    const updateInterest = (id, field, value) => {
+        setInterest(prev => 
+            prev.map(inter => inter.id === id ? { ...inter, [field]: value } : inter)
+        )
+    }  
+
+    const removeInterest = (id) => {
+        setInterest(prev => prev.filter(inter => inter.id !== id))
+    }
+
+    // Certificate
+    const addCertificate = () => {
+        const newCertificate = {
+            id: crypto.randomUUID(),
+            certificateText: "",
+            certificateLink: ""
+        }
+        setCertificate([...certificate, newCertificate]);
+    }
+
+    const updateCertificate = (id, field, value) => {
+        setCertificate(prev => 
+            prev.map(cert => cert.id === id ? { ...cert, [field]: value } : cert)
+        )
+    }
+
+    const removeCertificate = (id) => {
+        setCertificate(prev => prev.filter(cert => cert.id !== id))
     }
 
     return (
@@ -23,39 +66,60 @@ export default function Others(props) {
             <p>Add languages that you are able to communicate </p>
             <p>at least a little.</p>
 
-            <button className="add-language" onClick={addLang}>
+            <button className="add-language" onClick={addLanguage}>
                 <p>Add a language</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
 
             <div className="lang-info">
-                {langs}
+                {language.map(lang => (
+                    <LanguageInfo 
+                        key={lang.id}
+                        language={lang}
+                        updateLanguage={updateLanguage}
+                        removeLanguage={removeLanguage}
+                    />
+                ))}
             </div>
 
 
             <h3>Interest</h3>
             <p>Add your interests</p>
 
-            <button className="add-interests" onClick={addInterests}>
+            <button className="add-interests" onClick={addInterest}>
                 <p>Add an interest</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
             
             <div className="interest-info">
-                {interests}
+                {interest.map(inter => (
+                    <InterestsInfo 
+                        key={inter.id}
+                        interest={inter}
+                        updateInterest={updateInterest}
+                        removeInterest={removeInterest}
+                    />
+                ))}
             </div>
 
 
             <h3>Certificates</h3>
             <p>Add your certificates</p>
 
-            <button className="add-certificates" onClick={addCertificates}>
+            <button className="add-certificates" onClick={addCertificate}>
                 <p>Add a certificate</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
 
             <div className="certificate-info">
-                {certificates}
+                {certificate.map(cert => (
+                    <CertificatesInfo 
+                        key={cert.id}
+                        certificate={cert}
+                        updateCertificate={updateCertificate}
+                        removeCertificate={removeCertificate}
+                    />
+                ))}
             </div>
             
 
@@ -67,47 +131,37 @@ export default function Others(props) {
     )
 }
 
-function LanguageInfo(props) {
-    const removeField = (e) => {
-        if(e.target.tagName === 'path') {
-            e.target.parentElement.parentElement.remove();
-        }
-        else {
-            e.target.parentElement.remove();
-        }
+function LanguageInfo({ language, updateLanguage, removeLanguage }) {
+    const handleChange = (e) => {
+        updateLanguage(language.id, e.target.name, e.target.value)
     }
 
     return (
         <div className="other-fields">
             <label htmlFor="langName" id={crypto.randomUUID()}>
-                <input type="text" name="langName" onChange={(e) => props.setLanguages(e.target.value)}/>
+                <input type="text" name="langName" value={language.langName} onChange={handleChange}/>
             </label>
-            <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
+            <svg onClick={() => removeLanguage(language.id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
     )
 }
 
-function InterestsInfo(props) {
-    const removeField = (e) => {
-        if(e.target.tagName === 'path') {
-            e.target.parentElement.parentElement.remove();
-        }
-        else {
-            e.target.parentElement.remove();
-        }
+function InterestsInfo({ interest, updateInterest, removeInterest }) {
+    const handleChange = (e) => {
+        updateInterest(interest.id, e.target.name, e.target.value)
     }
 
     return(
         <div className="other-fields">
             <label htmlFor="interestName" id={crypto.randomUUID()}>
-                <input type="text" name="interestName" onChange={(e) => props.setInterests(e.target.value)}/>
+                <input type="text" name="interestName" value={interest.interestName} onChange={handleChange}/>
             </label>
-            <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
+            <svg onClick={() => removeInterest(interest.id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
     )
 }
 
-function CertificatesInfo(props) {
+function CertificatesInfo({ certificate, updateCertificate, removeCertificate }) {
     const [fieldsHide, setFieldsHide] = useState(false);
 
     const addFields = (e) => {
@@ -126,6 +180,10 @@ function CertificatesInfo(props) {
         e.target.parentElement.parentElement.parentElement.remove();
     }
 
+    const handleChange = (e) => {
+        updateCertificate(certificate.id, e.target.name, e.target.value)
+    }
+
     return (
         <div className="others-info">
             <button onClick={addFields}>
@@ -137,15 +195,15 @@ function CertificatesInfo(props) {
                 )}
             </button>
             <div className={fieldsHide ? "certificate-fields hidden" : "certificate-fields"}>
-                <label htmlFor="link-text" key={crypto.randomUUID()}>
+                <label htmlFor="link-text">
                     <p>Link Text</p>
-                    <input type="text" name="link-text" onChange={(e) => props.setCertificateText(e.target.value)}/>
+                    <input type="text" name="certificateText" value={certificate.certificateText} onChange={handleChange}/>
                 </label>
-                <label htmlFor="URL" key={crypto.randomUUID()}>
+                <label htmlFor="URL">
                     <p>URL</p>
-                    <input type="url" name="URL" onChange={(e) => props.setCertificateLink(e.target.value)}/>
+                    <input type="url" name="certificateLink" value={certificate.certificateLink} onChange={handleChange}/>
                 </label>
-                <button className="remove-certificate" onClick={removeForm}>
+                <button className="remove-certificate" onClick={() => removeCertificate(certificate.id)}>
                     <p>Remove this certificate</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
                 </button>

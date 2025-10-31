@@ -18,15 +18,14 @@ export default function makeContainers() {
 
   //Education
   const [education, setEducation] = useState([]);
-  
+
   //Skills
-  const [skills, setSkills] = useState("");
+  const [skill, setSkill] = useState([]);
 
   //Languages
-  const [languages, setLanguages] = useState("");
-  const [interests, setInterests] = useState("");
-  const [certificateText, setCertificateText] = useState("");
-  const [certificateLink, setCertificateLink] = useState("");
+  const [language, setLanguage] = useState([]);
+  const [interest, setInterest] = useState([]);
+  const [certificate, setCertificate] = useState([]);
 
   return (
     <>
@@ -48,13 +47,12 @@ export default function makeContainers() {
           education={education} setEducation={setEducation}
 
           //Skills
-          skills={skills} setSkills={setSkills}
+          skill={skill} setSkill={setSkill}
 
-          //Languages
-          languages={languages} setLanguages={setLanguages}
-          interests={interests} setInterests={setInterests}
-          certificateText={certificateText} setCertificateText={setCertificateText}
-          certificateLink={certificateLink} setCertificateLink={setCertificateLink}
+          //Others
+          language={language} setLanguage={setLanguage}
+          interest={interest} setInterest={setInterest}
+          certificate={certificate} setCertificate={setCertificate}
         />
       </div>
       <div className="preview-container">
@@ -75,13 +73,12 @@ export default function makeContainers() {
           education={education}
 
           //Skills
-          skills={skills}
+          skill={skill}
 
           //Others
-          languages={languages}
-          interests={interests}
-          certificateText={certificateText}
-          certificateLink={certificateLink}
+          language={language}
+          interest={interest}
+          certificate={certificate}
         /> 
       </div>
     </>

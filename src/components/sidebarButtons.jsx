@@ -47,16 +47,16 @@ export default function SideBarButtons(props) {
 
                 <div className="skills" style={{display: activeSection === "Skills" ? "block" : "none"}}> 
                     <Skills 
-                        skills={props.skills} setSkills={props.setSkills}
+                        skill={props.skill} 
+                        setSkill={props.setSkill}
                     />
                 </div>
                 
                 <div className="others" style={{display: activeSection === "Other" ? "block" : "none"}}>
                     <Others 
-                        languages={props.languages} setLanguages={props.setLanguages}
-                        interests={props.interests} setInterests={props.setInterests}
-                        certificateText={props.certificateText} setCertificateText={props.setCertificateText}
-                        certificateLink={props.certificateLink} setCertificateLink={props.setCertificateLink}
+                        language={props.language} setLanguage={props.setLanguage}
+                        interest={props.interest} setInterest={props.setInterest}
+                        certificate={props.certificate} setCertificate={props.setCertificate}
                     />
                 </div>
             </>

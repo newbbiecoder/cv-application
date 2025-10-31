@@ -1,10 +1,20 @@
-import { useState } from "react"
+export default function Skills({skill, setSkill}) {
+    const addSkill = () => {
+        const newSkill = {
+            id: crypto.randomUUID(),
+            skillName: ""
+        }
+        setSkill([...skill, newSkill]);
+    }
 
-export default function Skills(props) {
-    const [forms, setForms] = useState([]);
+    const updateSkill = (id, field, value) => {
+        setSkill(prev => 
+            prev.map(ski => ski.id === id ? { ...ski, [field]: value } : ski)
+        )
+    }
 
-    const addForm = () => {
-        setForms([...forms, <SkillInfo key={crypto.randomUUID()} {...props}/>])
+    const removeSkill = (id) => {
+        setSkill(prev => prev.filter(ski => ski.id !== id))
     }
 
     return (
@@ -16,10 +26,17 @@ export default function Skills(props) {
             <h4>Basic Skill</h4>
 
             <div className="skill-info">
-                {forms}
+                {skill.map(ski => (
+                    <SkillInfo 
+                        key={ski.id}
+                        skill={ski}
+                        updateSkill={updateSkill}
+                        removeSkill={removeSkill}
+                    />
+                ))}
             </div>
             
-            <button className="add-skill" onClick={addForm}>
+            <button className="add-skill" onClick={addSkill}>
                 <p>Add a skill</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
@@ -33,22 +50,17 @@ export default function Skills(props) {
     )
 }
 
-function SkillInfo(props) {
-    const removeField = (e) => {
-        if(e.target.tagName === 'path') {
-            e.target.parentElement.parentElement.remove();
-        }
-        else {
-            e.target.parentElement.remove();
-        }
+function SkillInfo({ skill, updateSkill, removeSkill }) {
+    const handleChange = (e) => {
+        updateSkill(skill.id, e.target.name, e.target.value)
     }
 
     return (
         <div className="skill-field">
             <label htmlFor="skillName" id={crypto.randomUUID()}>
-                <input type="text" name="skillName" onChange={(e) => props.setSkills(e.target.value)}/>
+                <input type="text" name="skillName" value={skill.skillName} onChange={handleChange}/>
             </label>
-            <svg onClick={removeField} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
+            <svg onClick={() => removeSkill(skill.id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
     )
 }

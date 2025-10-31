@@ -7,11 +7,11 @@ export default function PreviewContainer(props) {
                     aboutMe={props.aboutMe}
 
                     //Skills
-                    skills={props.skills}
+                    skill={props.skill}
 
                     //Others
-                    languages={props.languages}
-                    interests={props.interests}
+                    language={props.language}
+                    interest={props.interest}
                 />
             </div>
             <div className="right-side">
@@ -31,8 +31,7 @@ export default function PreviewContainer(props) {
                     education={props.education}
 
                     //Others
-                    certificateText={props.certificateText}
-                    certificateLink={props.certificateLink}
+                    certificate={props.certificate}
                 />
             </div>
         </div>
@@ -48,21 +47,32 @@ function LeftSide(props) {
                 <p>{props.aboutMe}</p>
             </div>
 
-            <div className="skills" style={{display: props.skills === "" ? 'none' : 'block'}}>
+            <div className="skills" style={{display: !props.skill || props.skill.length === 0 ? 'none' : 'block'}}>
                 <h4>Skills</h4>
-                <p>-&gt; {props.skills}</p>
+                <div className="new-skill">
+                    {props.skill.map(ski => (
+                        <p>-&gt; {ski.skillName}</p>
+                    ))}
+                </div>
             </div>
 
-            <div className="language" style={{display: props.languages === "" ? 'none' : 'block'}}>
+            <div className="language" style={{display: !props.language || props.language.length === 0 ? 'none' : 'block'}}>
                 <h4>Languages</h4>
-                <p>-&gt; {props.languages}</p>
+                <div className="new-interest">
+                    {props.language.map(lang => (
+                        <p>-&gt; {lang.langName}</p>
+                    ))}
+                </div>
             </div> 
 
-            <div className="interest" style={{display: props.interests === "" ? 'none' : 'block'}}>
+            <div className="interest" style={{display: !props.interest || props.interest.length === 0 ? 'none' : 'block'}}>
                 <h4>Interests</h4>
-                <p>-&gt; {props.interests}</p>
+                <div className="new-interest">
+                    {props.interest.map(inte => (
+                        <p>-&gt; {inte.interestName}</p>
+                    ))}
+                </div>
             </div>
-
         </>
     )
 }
@@ -109,9 +119,13 @@ function RightSide(props) {
                 <DisplayEducation {...props}/>
             </div>
 
-            <div className="certification" style={{display: props.certificateLink === "" && props.certificateText === "" ? 'none' : 'block'}}>
+            <div className="certification" style={{display: !props.certificate || props.certificate.length === 0 ? 'none' : 'block'}}>
                 <h4>Certification</h4>
-                <p><a href={props.certificateLink}>{props.certificateText}</a></p>
+                <div className="new-certificate">
+                    {props.certificate.map(cert => (
+                        <p><a href={cert.certificateLink}>{cert.certificateText}</a></p>
+                    ))}
+                </div>
             </div>
         </>
     )
