@@ -33,15 +33,8 @@ export default function SideBarButtons(props) {
 
                 <div className="experience" style={{display: activeSection === "Experience" ? "block" : "none"}}>
                     <ExperienceInput 
-                        company={props.company} setCompany={props.setCompany}
-                        position={props.position} setPosition={props.setPosition}
-                        locality={props.locality} setLocality={props.setLocality} 
-                        positionDesc={props.positionDesc} setPositionDesc={props.setPositionDesc}
-                        monthArr={props.monthArr} setMonthArr={props.setMonthArr}
-                        yearArr={props.yearArr} setYearArr={props.setYearArr}
-                        monthEnd={props.monthEnd} setMonthEnd={props.setMonthEnd}
-                        yearEnd={props.yearEnd} setYearEnd={props.setYearEnd}
-                        reasonTerm={props.reasonTerm} setReasonTerm={props.setReasonTerm}
+                        experiences={props.experiences} 
+                        setExperiences={props.setExperiences}
                     />
                 </div>
 

@@ -1,7 +1,31 @@
 import { useState, useMemo } from "react";
 
-export default function ExperienceInput(props) {
-    const [forms, setForms] = useState([]);
+export default function ExperienceInput({ experiences, setExperiences }) {
+    const addExperience = () => {
+        const newExperience = {
+            id: crypto.randomUUID(),
+            company: "",
+            position: "",
+            locality: "",
+            positionDesc: "",
+            monthArr: "",
+            yearArr: "",
+            monthEnd: "",
+            yearEnd: "",
+            reasonTerm: "",
+        };
+        setExperiences([...experiences, newExperience]);
+    };
+
+  const updateExperience = (id, field, value) => {
+    setExperiences(prev =>
+      prev.map(exp => exp.id === id ? { ...exp, [field]: value } : exp)
+    );
+  };
+
+  const removeExperience = (id) => {
+    setExperiences(prev => prev.filter(exp => exp.id !== id));
+  };
 
     return (
         <>
@@ -13,11 +37,18 @@ export default function ExperienceInput(props) {
 
             <div className="btn-container">
                 <div className="jobs">
-                    {forms}
+                    {experiences.map(exp => (
+                        <JobInfo
+                            key={exp.id}
+                            experience={exp}
+                            updateExperience={updateExperience}
+                            removeExperience={removeExperience}
+                        />
+                    ))}
                 </div>
                 
 
-                <button className="add-position" onClick={() => setForms([...forms, <JobInfo key={crypto.randomUUID()} {...props}/>])}>
+                <button className="add-position" onClick={addExperience}>
                     <p>Add a position</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                 </button>
@@ -31,38 +62,18 @@ export default function ExperienceInput(props) {
     )
 }
 
-function JobInfo(props) {
+function JobInfo({ experience, updateExperience, removeExperience }) {
     const [fieldsHide, setFieldsHide] = useState(false);
 
-    const handleNameChange = (e, fieldName) => {
-        if(fieldName === "Company") props.setCompany(e.target.value);
-        else if(fieldName === "Position") props.setPosition(e.target.value);
-        else if(fieldName === "Locality") props.setLocality(e.target.value);
-        else if(fieldName === "pos-desc") props.setPositionDesc(e.target.value);
-        else if(fieldName === "month-arr") props.setMonthArr(e.target.value);
-        else if(fieldName === "year-arr") props.setYearArr(e.target.value);
-        else if(fieldName === "month-end") props.setMonthEnd(e.target.value);
-        else if(fieldName === "year-end") props.setYearEnd(e.target.value);
-        else if(fieldName === "reason-term") props.setReasonTerm(e.target.value);
-    }
-    
-    const setValue = (valueFieldName) => {
-        valueFieldName === "Company" ? props.company : "";
-        valueFieldName === "Position" ? props.position : "";
-        valueFieldName === "Locality" ? props.locality : "";
-        valueFieldName === "pos-desc" ? props.positionDesc : "";
-        valueFieldName === "month-arr" ? props.monthArr : "";
-        valueFieldName === "year-arr" ? props.yearArr : "";
-        valueFieldName === "month-end" ? props.monthEnd : "";
-        valueFieldName === "year-end" ? props.yearEnd : "";
-        valueFieldName === "reason-term" ? props.reasonTerm : "";
-    }
+    const handleChange = (e) => {
+        updateExperience(experience.id, e.target.name, e.target.value);
+    };
     
     const formFields = useMemo(() => [
-        {name: "Position", id: crypto.randomUUID()},
-        {name: "Company", id: crypto.randomUUID()},
-        {name: "Locality", id: crypto.randomUUID()}
-    ],[]);
+        { label: "Position", name: "position", id: crypto.randomUUID() },
+        { label: "Company", name: "company", id: crypto.randomUUID() },
+        { label: "Locality", name: "locality", id: crypto.randomUUID() }
+    ], []);
 
     const addFields = (e) => {
         setFieldsHide(!fieldsHide);
@@ -74,10 +85,6 @@ function JobInfo(props) {
             ) : (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.remove('hide')
             : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.remove('hide')
             : e.target.parentNode.classList.remove('hide');
-    }
-
-    const removeForm = (e) => {
-        e.target.parentElement.parentElement.parentElement.remove();
     }
 
     const addTick = (e) => {
@@ -109,63 +116,54 @@ function JobInfo(props) {
                 {formFields.map(field => (
                     <label htmlFor={field.name} key={field.id}>
                         <p>
-                            {field.name} {' '}
+                            {field.name.charAt(0).toUpperCase() + field.name.slice(1)} {' '}
                             <span>*</span>
                         </p>
                         <input type="text" name={field.name} id={field.name} 
-                        onChange={(e) => handleNameChange(e, field.name)}
-                        value={setValue(field.name)}
+                        value={experience[field.name]} onChange={handleChange}
                         />
                     </label>
                 ))}
-                {useMemo(() => (
-                    <label htmlFor="pos-desc" key={crypto.randomUUID()}>
-                        Position description 
-                        <textarea name="pos-desc" id="pos-desc" onChange={(e) => handleNameChange(e, "pos-desc")} value={setValue("pos-desc")}></textarea>
+                
+                <label htmlFor="pos-desc">
+                    Position description 
+                    <textarea name="positionDesc" id="positionDesc" value={experience.positionDesc} onChange={handleChange}></textarea>
+                </label>
+                
+                <div className="company-arrival">
+                    <label htmlFor="month-arr">
+                        Month of Arrival
+                        <input type="text" name="monthArr" id="monthArr" value={experience.monthArr} onChange={handleChange}/>
                     </label>
-                ), [])}
-
-                {useMemo(() => (
-                    <div className="company-arrival">
-                        <label htmlFor="month-arr" key={crypto.randomUUID()}>
-                            Month of Arrival
-                            <input type="text" name="month-arr" id="month-arr" onChange={(e) => handleNameChange(e, "month-arr")} value={setValue("month-arr")}/>
-                        </label>
-                        <label htmlFor="year-arr" key={crypto.randomUUID()}>
-                            Year of entry
-                            <input type="number" name="year-arr" id="year-arr" onChange={(e) => handleNameChange(e, "year-arr")}
-                            value={setValue("year-arr")}/>
-                        </label>
-                    </div>
-                ),[])}
+                    <label htmlFor="year-arr">
+                        Year of entry
+                        <input type="number" name="yearArr" id="yearArr" value={experience.yearArr} onChange={handleChange}/>
+                    </label>
+                </div>
+                
 
                 <div className="still-working">
                     <span onClick={addTick}></span> <p>I'm still working here</p>
                 </div>
 
-                {useMemo(() => (
-                    <div className="company-left">
-                        <label htmlFor="month-end" key={crypto.randomUUID()}>
-                            End Month
-                            <input type="text" name="month-end" id="month-end" onChange={(e) => handleNameChange(e, "month-end")}
-                            value={setValue("month-end")}/>
-                        </label>
-                        <label htmlFor="year-end" key={crypto.randomUUID()}>
-                            Year of termination
-                            <input type="number" name="year-end" id="year-end" onChange={(e) => handleNameChange(e, "year-end")}
-                            value={setValue("year-end")}/>
-                        </label>
-                    </div>
-                ), [])}
-
-                {useMemo(() => (
-                    <label htmlFor="reason-term" key={crypto.randomUUID()}>
-                        Reason for termination
-                        <textarea name="reason-term" id="reason-term" onChange={(e) => handleNameChange(e, "reason-term")} value={setValue("reason-term")}></textarea>
+                
+                <div className="company-left">
+                    <label htmlFor="month-end">
+                        End Month
+                        <input type="text" name="monthEnd" id="monthEnd" value={experience.monthEnd} onChange={handleChange}/>
                     </label>
-                ), [])}
-
-                <button className="remove-position" onClick={removeForm}>
+                    <label htmlFor="year-end">
+                        Year of termination
+                        <input type="number" name="yearEnd" id="yearEnd" value={experience.yearEnd} onChange={handleChange}/>
+                    </label>
+                </div>
+                               
+                <label htmlFor="reason-term">
+                    Reason for termination
+                    <textarea name="reasonTerm" id="reasonTerm" value={experience.reasonTerm} onChange={handleChange}></textarea>
+                </label>
+                
+                <button className="remove-position" onClick={() => removeExperience(experience.id)}>
                     <p>Remove this position</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
                 </button>

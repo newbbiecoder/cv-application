@@ -14,15 +14,7 @@ export default function makeContainers() {
   const [aboutMe, setAboutMe] = useState("");
 
   //Experience
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
-  const [locality, setLocality] = useState("");
-  const [positionDesc, setPositionDesc] = useState("");
-  const [monthArr, setMonthArr] = useState("");
-  const [yearArr, setYearArr] = useState("");
-  const [monthEnd, setMonthEnd] = useState("");
-  const [yearEnd, setYearEnd] = useState("");
-  const [reasonTerm, setReasonTerm] = useState("");
+  const [experiences, setExperiences] = useState([]);
 
   //Education
   const [schoolName, setSchoolName] = useState("");
@@ -54,15 +46,7 @@ export default function makeContainers() {
           aboutMe={aboutMe} setAboutMe={setAboutMe}
 
           // Experience
-          company={company} setCompany={setCompany}  
-          position={position} setPosition={setPosition}   
-          locality={locality} setLocality={setLocality} 
-          positionDesc={locality} setPositionDesc={setPositionDesc}
-          monthArr={monthArr} setMonthArr={setMonthArr}
-          yearArr={yearArr} setYearArr={setYearArr}
-          monthEnd={monthEnd} setMonthEnd={setMonthEnd}
-          yearEnd={yearEnd} setYearEnd={setYearEnd}
-          reasonTerm={reasonTerm} setReasonTerm={setReasonTerm}
+          experiences={experiences} setExperiences={setExperiences}
 
           //Education
           schoolName={schoolName} setSchoolName={setSchoolName}
@@ -93,15 +77,7 @@ export default function makeContainers() {
           aboutMe={aboutMe}
 
           // Experience
-          company={company}
-          position={position}
-          locality={locality}
-          positionDesc={positionDesc}
-          monthArr={monthArr}
-          yearArr={yearArr}
-          monthEnd={monthEnd}
-          yearEnd={yearEnd}
-          reasonTerm={reasonTerm}
+          experiences={experiences}
 
           //Education
           schoolName={schoolName}

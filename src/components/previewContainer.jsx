@@ -25,15 +25,7 @@ export default function PreviewContainer(props) {
                     website={props.website}
 
                     //Experience
-                    company={props.company}
-                    position={props.position}
-                    locality={props.locality}
-                    positionDesc={props.positionDesc}
-                    monthArr={props.monthArr}
-                    yearArr={props.yearArr}
-                    monthEnd={props.monthEnd}
-                    yearEnd={props.yearEnd}
-                    reasonTerm={props.reasonTerm}
+                    experiences={props.experiences}
 
                     //Education
                     schoolName={props.schoolName}
@@ -111,29 +103,9 @@ function RightSide(props) {
                 </div>
             </div>
 
-            <div className="work-exp" style={{display: props.position === "" && props.company === "" && props.monthArr === "" && props.yearArr === "" && props.monthEnd === "" && props.yearEnd === "" && props.locality === "" && props.positionDesc === "" && props.reasonTerm === "" ? 'none' : 'block'}}>
+            <div className="work-exp" style={{display: !props.experiences || props.experiences.length === 0 ? 'none' : 'block'}}>
                 <h3>Work Experience</h3>
-                <div className="new-job-exp">
-                    <div className="about-job" >
-                        <p className="company" style={{display: props.company === "" ? 'none' : 'flex'}}>{props.company},</p>
-                        <p className="position" style={{display: props.position === "" ? 'none' : 'flex'}}>{props.position}</p>
-                    </div>
-                    <div className="job-duration-location">
-                            {props.monthEnd === "" && props.yearEnd === "" ? (
-                                <p className="job-duration" style={{display: props.monthArr === "" && props.yearArr === "" ? 'none' : 'flex'}}>{props.monthArr} {props.yearArr} present</p> 
-                            ) : (
-                                <p className="job-duration">{props.monthArr} {props.yearArr} - {props.monthEnd} {props.yearEnd}</p>
-                            )}
-                        <p className="job-location" style={{display: props.locality === "" ? 'none' : 'flex'}}>| {props.locality}</p>
-                    </div>
-                    <div className="job-desc">
-                        {props.positionDesc}
-                    </div>
-                    <div className="job-term" style={{display: props.monthEnd === "" ? 'none' : 'flex'}}>
-                        <p>Reason for termination: </p>
-                        <p className="reason-term">{props.reasonTerm}</p>
-                    </div>
-                </div>
+                <DisplayExperience {...props}/>
             </div>
 
             <div className="education" style={{display: props.schoolName === "" && props.schoolStartYear === "" && props.schoolEndYear === "" && props.schoolRole === "" && props.schoolType === "" ? 'none' : 'block'}}>
@@ -159,5 +131,36 @@ function RightSide(props) {
                 <p><a href={props.certificateLink}>{props.certificateText}</a></p>
             </div>
         </>
+    )
+}
+
+function DisplayExperience({ experiences }) {
+    if (!experiences || experiences.length === 0) return null;
+    return (
+        experiences.map(exp => (
+            <div key={exp.id} className="new-job-exp">
+            <div className="about-job" >
+                <p className="company" style={{display: exp.company === "" ? 'none' : 'flex'}}>{exp.company},</p>
+                <p className="position" style={{display: exp.position === "" ? 'none' : 'flex'}}>{exp.position}</p>
+            </div>
+            <div className="job-duration-location">
+                    {exp.monthEnd === "" && exp.yearEnd === "" ? (
+                        <p className="job-duration" style={{display: exp.monthArr === "" && exp.yearArr === "" ? 'none' : 'flex'}}>
+                            {exp.monthArr} {exp.yearArr} - {exp.monthEnd || "present"} {exp.yearEnd}
+                        </p> 
+                    ) : (
+                        <p className="job-duration">{exp.monthArr} {exp.yearArr} - {exp.monthEnd} {exp.yearEnd}</p>
+                    )}
+                <p className="job-location" style={{display: exp.locality === "" ? 'none' : 'flex'}}>| {exp.locality}</p>
+            </div>
+            <div className="job-desc">
+                {exp.positionDesc}
+            </div>
+            <div className="job-term" style={{display: exp.monthEnd === "" ? 'none' : 'flex'}}>
+                <p>Reason for termination: </p>
+                <p className="reason-term">{exp.reasonTerm}</p>
+            </div>
+        </div>
+        ))   
     )
 }
