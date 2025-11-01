@@ -172,11 +172,10 @@ function DisplayExperience({ experiences }) {
                 <p className="job-location" style={{display: exp.locality === "" ? 'none' : 'flex'}}>| {exp.locality}</p>
             </div>
             <div className="job-desc">
-                {exp.positionDesc}
+                <p>{exp.positionDesc}</p>
             </div>
             <div className="job-term" style={{display: exp.monthEnd === "" ? 'none' : 'flex'}}>
-                <p>Reason for termination: </p>
-                <p className="reason-term">{exp.reasonTerm}</p>
+                <p className="reason-term">Reason for termination: {exp.reasonTerm}</p>
             </div>
         </div>
         ))   

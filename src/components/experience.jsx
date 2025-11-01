@@ -137,7 +137,7 @@ function JobInfo({ experience, updateExperience, removeExperience }) {
                     </label>
                     <label htmlFor="year-arr">
                         Year of entry
-                        <input type="number" name="yearArr" id="yearArr" value={experience.yearArr} onChange={handleChange}/>
+                        <input type="number" name="yearArr" id="yearArr" value={experience.yearArr} onChange={(e) => {if (/^\d{0,4}$/.test(e.target.value)) handleChange(e)}}/>
                     </label>
                 </div>
                 
@@ -154,7 +154,7 @@ function JobInfo({ experience, updateExperience, removeExperience }) {
                     </label>
                     <label htmlFor="year-end">
                         Year of termination
-                        <input type="number" name="yearEnd" id="yearEnd" value={experience.yearEnd} onChange={handleChange}/>
+                        <input type="number" name="yearEnd" id="yearEnd" value={experience.yearEnd} onChange={(e) => {if (/^\d{0,4}$/.test(e.target.value)) handleChange(e)}}/>
                     </label>
                 </div>
                                

@@ -139,7 +139,7 @@ function LanguageInfo({ language, updateLanguage, removeLanguage }) {
     return (
         <div className="other-fields">
             <label htmlFor="langName" id={crypto.randomUUID()}>
-                <input type="text" name="langName" value={language.langName} onChange={handleChange}/>
+                <input type="text" name="langName" value={language.langName} onChange={(e) => {if (/^.{0,13}$/.test(e.target.value)) handleChange(e)}}/>
             </label>
             <svg onClick={() => removeLanguage(language.id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
@@ -154,7 +154,7 @@ function InterestsInfo({ interest, updateInterest, removeInterest }) {
     return(
         <div className="other-fields">
             <label htmlFor="interestName" id={crypto.randomUUID()}>
-                <input type="text" name="interestName" value={interest.interestName} onChange={handleChange}/>
+                <input type="text" name="interestName" value={interest.interestName} onChange={(e) => {if (/^.{0,13}$/.test(e.target.value)) handleChange(e)}}/>
             </label>
             <svg onClick={() => removeInterest(interest.id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
         </div>
@@ -174,10 +174,6 @@ function CertificatesInfo({ certificate, updateCertificate, removeCertificate })
             ) : (e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'svg') ? e.target.parentNode.parentNode.classList.remove('hide')
             : (e.target.tagName.toLowerCase() === 'path') ? e.target.parentNode.parentNode.parentNode.classList.remove('hide')
             : e.target.parentNode.classList.remove('hide');
-    }
-
-    const removeForm = (e) => {
-        e.target.parentElement.parentElement.parentElement.remove();
     }
 
     const handleChange = (e) => {

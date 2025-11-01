@@ -41,9 +41,9 @@ export default function PersonalDataInput(props) {
     ], [])
 
     function getInputField(field) {
-        if(field === "Email*") return "email";
+        if(field === "Email") return "email";
         else if(field === "Link to your website") return "url";
-        else if(field === "Telephone number*") return "tel"
+        else if(field === "Telephone number") return "number"
         else return "text"
     }
 
@@ -88,7 +88,16 @@ export default function PersonalDataInput(props) {
                             <textarea name={field.name} rows="6" cols="30" onChange={(e) => handleNameChange(e, field.name)} value={setValue(field.name)}></textarea>
                         ) : (
                             <>
-                            <input type={getInputField(field.name)} name={field.name} id={field.name} onChange={(e) => handleNameChange(e, field.name)} value={setValue(field.name)}
+                            <input 
+                            type={getInputField(field.name)} 
+                            name={field.name} id={field.name} 
+                            onChange={(e) => {
+                                if (field.name === "Telephone number") {
+                                    if (/^\d{0,11}$/.test(e.target.value)) handleNameChange(e, field.name);
+                                } else {
+                                handleNameChange(e, field.name);
+                                }
+                            }}
                             /> 
                             </>
                         )}

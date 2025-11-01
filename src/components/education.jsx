@@ -140,7 +140,7 @@ function EducationInfo({ education, updateEducation, removeEducation }) {
                         Year of start of study
                         <span>*</span>
                     </p>
-                    <input type="number" name="schoolStartYear" id="school-start" value={education.schoolStartYear} onChange={handleChange}/>
+                    <input type="number" name="schoolStartYear" id="school-start" value={education.schoolStartYear} onChange={(e) => {if (/^\d{0,4}$/.test(e.target.value)) handleChange(e)}} />
                 </label>
 
                 <div className="still-studying">
@@ -152,7 +152,7 @@ function EducationInfo({ education, updateEducation, removeEducation }) {
                         Year of Graduation
                         <span>*</span>
                     </p>
-                    <input type="number" name="schoolEndYear" id="school-end" value={education.schoolEndYear} onChange={handleChange}/>
+                    <input type="number" name="schoolEndYear" id="school-end" value={education.schoolEndYear} onChange={(e) => {if (/^\d{0,4}$/.test(e.target.value)) handleChange(e)}}/>
                 </label>
 
                 <button className="remove-education" onClick={() => removeEducation(education.id)}>
