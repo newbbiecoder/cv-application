@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-export default function ExperienceInput({ experiences, setExperiences }) {
+export default function ExperienceInput({ experiences, setExperiences, setActiveSection }) {
     const addExperience = () => {
         const newExperience = {
             id: crypto.randomUUID(),
@@ -53,7 +53,7 @@ export default function ExperienceInput({ experiences, setExperiences }) {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                 </button>
 
-                <button className="btn-education">
+                <button className="btn-education" onClick={() => setActiveSection("Education")}>
                     <p>Continue to education</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-thin</title><path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" /></svg>
                 </button>

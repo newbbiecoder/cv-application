@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Education({education, setEducation}) {
+export default function Education({education, setEducation, setActiveSection}) {
     const addEducation = () => {
         const newEducation = {
             id: crypto.randomUUID(),
@@ -45,7 +45,7 @@ export default function Education({education, setEducation}) {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
             </button>
 
-            <button className="btn-skills">
+            <button className="btn-skills" onClick={() => setActiveSection("Skills")}>
                 <p>Continue to skills</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-thin</title><path d="M14 16.94V12.94H5.08L5.05 10.93H14V6.94L19 11.94Z" /></svg>
             </button>

@@ -85,6 +85,10 @@ body {
             }
         }
     } 
+    .active-tab {
+        border: 2px solid blue;
+    }
+
     li:hover {
         border: 2px solid blue;
     }

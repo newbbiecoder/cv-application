@@ -29,6 +29,7 @@ export default function SideBarButtons(props) {
                         website={props.website} setWebsite={props.setWebsite}
                         aboutMe={props.aboutMe} setAboutMe={props.setAboutMe}
                         selectedFile={props.selectedFile} setSelectedFile={props.setSelectedFile}
+                        setActiveSection={setActiveSection}
                     />
                 </div>
 
@@ -36,6 +37,7 @@ export default function SideBarButtons(props) {
                     <ExperienceInput 
                         experiences={props.experiences} 
                         setExperiences={props.setExperiences}
+                        setActiveSection={setActiveSection}
                     />
                 </div>
 
@@ -43,6 +45,7 @@ export default function SideBarButtons(props) {
                     <Education 
                         education={props.education} 
                         setEducation={props.setEducation}
+                        setActiveSection={setActiveSection}
                     />
                 </div>
 
@@ -50,6 +53,7 @@ export default function SideBarButtons(props) {
                     <Skills 
                         skill={props.skill} 
                         setSkill={props.setSkill}
+                        setActiveSection={setActiveSection}
                     />
                 </div>
                 
@@ -58,6 +62,7 @@ export default function SideBarButtons(props) {
                         language={props.language} setLanguage={props.setLanguage}
                         interest={props.interest} setInterest={props.setInterest}
                         certificate={props.certificate} setCertificate={props.setCertificate}
+                        setActiveSection={setActiveSection}
                     />
                 </div>
             </>
@@ -69,8 +74,8 @@ export default function SideBarButtons(props) {
                 <p>CV data</p>
                 <ul>
                     {buttonNames.map((button) => (
-                        <li key={button.id}>
-                            <button onClick={() => setActiveSection(button.name)}>
+                        <li key={button.id} className={activeSection === button.name ? "active-tab": ""}>
+                            <button onClick={() => setActiveSection(button.name)} >
                                 <img src={button.url} alt={button.name} />
                                 <p>{button.name}</p>
                             </button>
