@@ -28,6 +28,7 @@ export default function SideBarButtons(props) {
                         residence={props.residence} setResidence={props.setResidence}
                         website={props.website} setWebsite={props.setWebsite}
                         aboutMe={props.aboutMe} setAboutMe={props.setAboutMe}
+                        selectedFile={props.selectedFile} setSelectedFile={props.setSelectedFile}
                     />
                 </div>
 

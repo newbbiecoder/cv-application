@@ -12,6 +12,7 @@ export default function makeContainers() {
   const [residence, setResidence] = useState("");
   const [website, setWebsite] = useState("");
   const [aboutMe, setAboutMe] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   //Experience
   const [experiences, setExperiences] = useState([]);
@@ -39,6 +40,7 @@ export default function makeContainers() {
           residence={residence} setResidence={setResidence}
           website={website} setWebsite={setWebsite}
           aboutMe={aboutMe} setAboutMe={setAboutMe}
+          selectedFile={selectedFile} setSelectedFile={setSelectedFile}
 
           // Experience
           experiences={experiences} setExperiences={setExperiences}
@@ -53,6 +55,7 @@ export default function makeContainers() {
           language={language} setLanguage={setLanguage}
           interest={interest} setInterest={setInterest}
           certificate={certificate} setCertificate={setCertificate}
+          
         />
       </div>
       <div className="preview-container">
@@ -65,6 +68,7 @@ export default function makeContainers() {
           residence={residence}
           website={website}
           aboutMe={aboutMe}
+          selectedFile={selectedFile}
 
           // Experience
           experiences={experiences}

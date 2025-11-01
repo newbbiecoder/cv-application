@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react"
+
 export default function PreviewContainer(props) {
     return (
         <div className="resume">
@@ -5,6 +7,7 @@ export default function PreviewContainer(props) {
                 <LeftSide
                     //PersonalInput
                     aboutMe={props.aboutMe}
+                    selectedFile={props.selectedFile}
 
                     //Skills
                     skill={props.skill}
@@ -39,9 +42,27 @@ export default function PreviewContainer(props) {
 }
 
 function LeftSide(props) {
+    const [delayedImage, setDelayedImage] = useState(null);
+    const [fadeIn, setFadeIn] = useState(false);
+
+    useEffect(() => {
+        if(props.selectedFile) {
+            const timer = setTimeout(() => {
+                setDelayedImage(props.selectedFile);
+                setFadeIn(false);
+                setTimeout(() => setFadeIn(true), 50);
+            }, 3000);
+            return () => clearTimeout(timer);
+        } else {
+            setDelayedImage(null);
+        }
+    }, [props.selectedFile]);
+
     return (
         <>
-            {/* <img src="" alt="" /> */}
+            {delayedImage && (
+                <img src={props.selectedFile} style={{display: props.selectedFile === null ? 'none' : 'block'}} className={`preview-img ${fadeIn ? 'fade-in': ""}`}/>
+            )}
             <div className="about-me" style={{display: props.aboutMe === "" ? 'none' : 'block'}}>
                 <h3>About Me</h3>
                 <p>{props.aboutMe}</p>

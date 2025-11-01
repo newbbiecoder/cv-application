@@ -3,6 +3,15 @@
     src: url(assets/fonts/ckhans-fonts-gravitica-light-demo/ckhans-fonts-gravitica-light-demo.otf);
 }
 
+@keyframes borderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
 #root {
     display: flex;
     min-height: 100vh;
@@ -152,6 +161,7 @@ body {
         align-items: center;
         gap: 1rem;
         margin-bottom: 1rem;
+        cursor: pointer;
 
         svg:first-child {
             border: 2px solid blue;
@@ -177,8 +187,71 @@ body {
                 fill: blue;
                 height: 25px;
                 width: 25px;
+                transition: transform 0.3s ease-in-out;
+                transform: rotate(0deg);
             }    
         }
+    }
+    .addPhoto:hover {
+        p {
+            color: #0058BA;
+            text-decoration: none;
+        }
+
+        div > svg {
+            transform: rotate(180deg);
+        } 
+    }
+
+    .removePhoto {
+        display: flex;
+        margin-top: 1rem;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            padding: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #f8e71c, #50e3c2, #007aff);
+            background-size: 400%;
+            animation: borderRotate 3s linear 1;
+        }
+
+        div {
+            color: red;
+            display: flex;
+
+            p {
+                font-family: Roboto;
+                margin-top: 2px;
+                text-decoration: underline;
+            }
+
+            svg {
+                fill: red;
+                height: 25px;
+                width: 25px;
+                transition: transform 0.3s ease-in-out;
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    .removePhoto:hover {
+        p {
+            color: rgb(222, 61, 61);
+            text-decoration: none;
+        }
+
+        div > svg {
+            transform: rotate(180deg);
+        } 
     }
 }
 
@@ -794,6 +867,25 @@ label[for="school-end"].studying-hidden {
     flex-direction: column;
     align-items: flex-start;
     font-family: Calibri;
+
+    .preview-img {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.5rem;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .preview-img.fade-in {
+        transform: scale(1);
+        opacity: 1;
+    }
     
     .skills {
         ul {
