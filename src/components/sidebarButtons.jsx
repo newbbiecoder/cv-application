@@ -63,6 +63,7 @@ export default function SideBarButtons(props) {
                         interest={props.interest} setInterest={props.setInterest}
                         certificate={props.certificate} setCertificate={props.setCertificate}
                         setActiveSection={setActiveSection}
+                        handleDownloadPDF={props.handleDownloadPDF}
                     />
                 </div>
             </>
