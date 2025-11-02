@@ -1,19 +1,36 @@
-# React + Vite
+# 📄 Resume/CV Builder Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive CV Application Builder that allows users to create, preview, and download professional resumes as PDFs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Users can input personal, educational, and professional details to generate a real-time resume preview.  
+- Structured and modular React components for easier scalability.
+- 💾 **PDF Export** — Download your resume as a high-quality A4 PDF file.  
+- 📱 **Responsive Design** — Works well on desktops and mobile devices.  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| **Frontend** | React, HTML, CSS |
+| **PDF Generation** | [html2canvas](https://www.npmjs.com/package/html2canvas), [jspdf](https://www.npmjs.com/package/jspdf) |
+| **Fonts** | Gravitica, Roboto |
 
+---
 
-Profile Photo - Freepik --> https://www.freepik.com/free-photo/happy-young-businessman-walking-near-business-center_8196229.htm#fromView=search&page=1&position=24&uuid=273e34fd-0a15-40af-a1b1-1b87b349c18c&query=man+face+professional
+## Libraries Used
+
+- **`html2canvas`** → Converts the resume preview section to a canvas for capturing screenshots.  
+- **`jspdf`** → Converts the captured canvas to an A4-sized PDF for download. 
+
+---
+
+## Learnings
+
+- Designing **responsive layouts** using advanced CSS (flex, media queries).  
+- Implementing **PDF generation** from dynamic HTML content using `html2canvas` and `jspdf`.  
+- Managing **state and forms in React** to dynamically render components.  
+- Improving **UI/UX** with animations, hover effects, and component-based design.
