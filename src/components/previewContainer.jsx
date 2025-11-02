@@ -72,16 +72,16 @@ function LeftSide(props) {
                 <h4>Skills</h4>
                 <div className="new-skill">
                     {props.skill.map(ski => (
-                        <p>-&gt; {ski.skillName}</p>
+                        <p>• {ski.skillName}</p>
                     ))}
                 </div>
             </div>
 
             <div className="language" style={{display: !props.language || props.language.length === 0 ? 'none' : 'block'}}>
                 <h4>Languages</h4>
-                <div className="new-interest">
+                <div className="new-language">
                     {props.language.map(lang => (
-                        <p>-&gt; {lang.langName}</p>
+                        <p>• {lang.langName}</p>
                     ))}
                 </div>
             </div> 
@@ -90,7 +90,7 @@ function LeftSide(props) {
                 <h4>Interests</h4>
                 <div className="new-interest">
                     {props.interest.map(inte => (
-                        <p>-&gt; {inte.interestName}</p>
+                        <p>• {inte.interestName}</p>
                     ))}
                 </div>
             </div>
@@ -132,7 +132,9 @@ function RightSide(props) {
 
             <div className="work-exp" style={{display: !props.experiences || props.experiences.length === 0 ? 'none' : 'block'}}>
                 <h3>Work Experience</h3>
-                <DisplayExperience {...props}/>
+                <div className="new-job">
+                    <DisplayExperience {...props}/>
+                </div>
             </div>
 
             <div className="education" style={{display: !props.education || props.education.length === 0 ? 'none' : 'block'}}>
