@@ -15,11 +15,11 @@ export default function SideBarButtons(props) {
     const [activeSection, setActiveSection] = useState('Personal data');
 
     const buttonNames = [
-        {name: "Personal data", id: crypto.randomUUID(), url: {personalDataButton}},
-        {name: "Experience", id: crypto.randomUUID(), url: {experienceButton}},
-        {name: "Education", id: crypto.randomUUID(), url: {educationButton}},
-        {name: "Skills", id: crypto.randomUUID(), url: {skillsButton}},
-        {name: "Other", id: crypto.randomUUID(), url: {othersButton}},
+        {name: "Personal data", id: crypto.randomUUID(), url: personalDataButton},
+        {name: "Experience", id: crypto.randomUUID(), url: experienceButton},
+        {name: "Education", id: crypto.randomUUID(), url: educationButton},
+        {name: "Skills", id: crypto.randomUUID(), url: skillsButton},
+        {name: "Other", id: crypto.randomUUID(), url: othersButton},
     ]
 
     function renderActiveSection() {
