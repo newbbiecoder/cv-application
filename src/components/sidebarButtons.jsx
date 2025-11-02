@@ -5,15 +5,21 @@ import Education from "./education";
 import Skills from "./skills";
 import Others from "./others";
 
+import personalDataButton from "../assets/images/icons-buttons/personal-data-button.svg";
+import experienceButton from "../assets/images/icons-buttons/experience-button.svg";
+import educationButton from "../assets/images/icons-buttons/education-button.svg";
+import skillsButton from "../assets/images/icons-buttons/skills-button.svg";
+import othersButton from "../assets/images/icons-buttons/others-button.svg";
+
 export default function SideBarButtons(props) {
     const [activeSection, setActiveSection] = useState('Personal data');
 
     const buttonNames = [
-        {name: "Personal data", id: crypto.randomUUID(), url: "src/assets/images/icons-buttons/personal-data-button.svg"},
-        {name: "Experience", id: crypto.randomUUID(), url: "src/assets/images/icons-buttons/experience-button.svg"},
-        {name: "Education", id: crypto.randomUUID(), url: "src/assets/images/icons-buttons/education-button.svg"},
-        {name: "Skills", id: crypto.randomUUID(), url: "src/assets/images/icons-buttons/skills-button.svg"},
-        {name: "Other", id: crypto.randomUUID(), url: "src/assets/images/icons-buttons/others-button.svg"},
+        {name: "Personal data", id: crypto.randomUUID(), url: {personalDataButton}},
+        {name: "Experience", id: crypto.randomUUID(), url: {experienceButton}},
+        {name: "Education", id: crypto.randomUUID(), url: {educationButton}},
+        {name: "Skills", id: crypto.randomUUID(), url: {skillsButton}},
+        {name: "Other", id: crypto.randomUUID(), url: {othersButton}},
     ]
 
     function renderActiveSection() {
