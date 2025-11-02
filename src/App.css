@@ -1182,16 +1182,17 @@ label[for="school-end"].studying-hidden {
 
         .header {
             gap: 0.2rem;
+            margin-bottom: 2rem;
         }
 
         .header > .header-container {
             flex-direction: column;
             align-items: flex-start;
             gap: 0.3rem;
-        }
 
-        .header p {
-            font-size: 0.9rem;
+            p {
+                font-size: 0.8rem;
+            }
         }
     }
 
