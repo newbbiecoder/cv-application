@@ -195,7 +195,6 @@ body {
 
             svg {
                 fill: blue;
-                height: 25px;
                 width: 25px;
                 transition: transform 0.3s ease-in-out;
                 transform: rotate(0deg);
@@ -1127,13 +1126,6 @@ label[for="school-end"].studying-hidden {
         flex-direction: column;
         gap: 2rem;
         padding: 1rem;
-    }
-
-    .addPhoto {
-        svg:first-child {
-            height: auto !important;
-            width: auto !important;
-        }
     }
 
     .preview-container {
