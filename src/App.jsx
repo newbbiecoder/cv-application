@@ -32,12 +32,7 @@ export default function makeContainers() {
 
   const handleDownloadPDF = async () => {
     const preview = document.querySelector(".resume");
-
     if (!preview) return alert("Preview not found!");
-
-    preview.style.backgroundColor = "#ebf4ff";
-    preview.style.display = "flex";
-    preview.style.alignItems = "stretch";
 
     const canvas = await html2canvas(preview, {
       scale: 2,
@@ -49,23 +44,30 @@ export default function makeContainers() {
 
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
-
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
+
     const imgWidth = pageWidth;
     const imgHeight = (canvas.height * pageWidth) / canvas.width;
 
-    if (imgHeight <= pageHeight) {
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-    } else {
-      let position = 0;
-      let heightLeft = imgHeight;
-      while (heightLeft > 0) {
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        if (heightLeft > 0) pdf.addPage();
-        position -= pageHeight;
-      }
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    //Add first page
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    //Add extra pages(if needed)
+    while (heightLeft > 0) {
+      position -= pageHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
+    //remove accidental blank last page
+    if (heightLeft < -pageHeight / 2) {
+      pdf.deletePage(pdf.internal.getNumberOfPages());
     }
 
     pdf.save("My_CV.pdf");
