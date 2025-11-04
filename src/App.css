@@ -1091,6 +1091,10 @@ label[for="school-end"].studying-hidden {
     }
 }
 
+.personalDataForm > label:nth-child(5) > input {
+    font-family: Roboto;
+}
+
 .job-desc > p, .job-term > p {
     box-sizing: border-box;
     overflow-wrap: break-word;
