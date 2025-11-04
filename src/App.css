@@ -997,7 +997,6 @@ label[for="school-end"].studying-hidden {
             }
             .residence, .website {
                 display: flex;
-                flex-wrap: wrap;
                 gap: 0.3rem;
                 svg {
                     width: 25px;
