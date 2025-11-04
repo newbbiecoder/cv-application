@@ -34,30 +34,32 @@ export default function makeContainers() {
     const preview = document.querySelector(".resume");
     if (!preview) return alert("Preview not found!");
 
+    const originalStyle = preview.style.transform;
+    preview.style.transform = "scale(1)";
+    preview.style.transformOrigin = "top left";
+
     const canvas = await html2canvas(preview, {
-      scale: 2,
+      scale: 2, 
       useCORS: true,
-      backgroundColor: "#ebf4ff",
-      scrollX: 0,
-      scrollY: -window.scrollY,
+      backgroundColor: "#ffffff",
+      windowWidth: preview.scrollWidth,
+      windowHeight: preview.scrollHeight,
     });
 
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
+
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-
     const imgWidth = pageWidth;
-    const imgHeight = (canvas.height * pageWidth) / canvas.width;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
     let heightLeft = imgHeight;
     let position = 0;
 
-    //Add first page
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pageHeight;
 
-    //Add extra pages(if needed)
     while (heightLeft > 0) {
       position -= pageHeight;
       pdf.addPage();
@@ -65,13 +67,15 @@ export default function makeContainers() {
       heightLeft -= pageHeight;
     }
 
-    //remove accidental blank last page
+    // remove blank last page
     if (heightLeft < -pageHeight / 2) {
       pdf.deletePage(pdf.internal.getNumberOfPages());
     }
 
+    preview.style.transform = originalStyle;
     pdf.save("My_CV.pdf");
   };
+
 
 
   return (
