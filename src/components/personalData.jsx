@@ -94,8 +94,12 @@ export default function PersonalDataInput(props) {
                             onChange={(e) => {
                                 if (field.name === "Telephone number") {
                                     if (/^\d{0,11}$/.test(e.target.value)) handleNameChange(e, field.name);
-                                } else {
-                                handleNameChange(e, field.name);
+                                } 
+                                else if(field.name === "Link to your website" || field.name === "Email" || field.name === "Residence (city)"){
+                                    if (/^.{0,26}$/.test(e.target.value)) handleNameChange(e, field.name);
+                                }
+                                else {
+                                    handleNameChange(e, field.name);
                                 }
                             }}
                             /> 
