@@ -1166,11 +1166,17 @@ label[for="school-end"].studying-hidden {
             padding-bottom: 10px;
         }
 
+        .mail, .phoneNumber, .website, .residence {
+            svg {
+                width: 20px !important;
+                height: 20px !important;
+            }
+        }
+
         .header svg {
             width: 20px;
             height: 20px;
         }
-        
 
         .header {
             gap: 0.2rem;
